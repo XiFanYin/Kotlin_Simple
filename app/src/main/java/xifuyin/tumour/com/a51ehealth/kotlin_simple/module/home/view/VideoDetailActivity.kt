@@ -1,6 +1,7 @@
 package xifuyin.tumour.com.a51ehealth.kotlin_simple.module.home.view
 
 import android.content.pm.ActivityInfo
+import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_vidio_detail.*
 import xifuyin.tumour.com.a51ehealth.kotlin_simple.R
 import xifuyin.tumour.com.a51ehealth.kotlin_simple.base.BaseActivity
@@ -29,7 +30,6 @@ class VideoDetailActivity : BaseActivity() {
         xVideoView.setController(controller)//让自定义播放器持有控制器对象，同时让控制器持有播放器对象，同时把控制器添加到自定义控件中
         xVideoView.setUrl(itemData.playUrl)
         xVideoView.start()
-        controller.cover
         xVideoView.enterFullScreen(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE)
     }
 
