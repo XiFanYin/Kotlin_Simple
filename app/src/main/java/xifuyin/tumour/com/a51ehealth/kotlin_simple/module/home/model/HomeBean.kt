@@ -1,5 +1,7 @@
 package xifuyin.tumour.com.a51ehealth.kotlin_simple.module.home.model
 
+import java.io.Serializable
+
 /**
  * Created by Administrator on 2018/5/22.
  */
@@ -10,7 +12,7 @@ data class HomeBean(val issueList: List<Issue>, val newestIssueType: String, val
     data class Issue(var count: Int, val date: Long, val itemList: ArrayList<Item>, val publishTime: Long, val releaseTime: Long, val type: String) {
 
 
-        data class Item(val adIndex: Int, val data: Data, val id: Int, val type: String) {
+        data class Item(val adIndex: Int, val data: Data, val id: Int, val type: String) : Serializable {
 
             data class Data(
                     val author: Author,
@@ -41,14 +43,14 @@ data class HomeBean(val issueList: List<Issue>, val newestIssueType: String, val
                     val tags: ArrayList<Tag>,
                     val title: String,
                     val type: String,
-                    val webUrl: WebUrl) {
+                    val webUrl: WebUrl) : Serializable {
 
-                data class Consumption(val collectionCount: Int, val replyCount: Int, val shareCount: Int)
+                data class Consumption(val collectionCount: Int, val replyCount: Int, val shareCount: Int) : Serializable
 
 
-                data class PlayInfo(val height: Int, val name: String, val type: String, val url: String, val urlList: List<Url>, val width: Int) {
+                data class PlayInfo(val height: Int, val name: String, val type: String, val url: String, val urlList: List<Url>, val width: Int) : Serializable {
 
-                    data class Url(val name: String, val size: Int, val url: String)
+                    data class Url(val name: String, val size: Int, val url: String) : Serializable
                 }
 
 
@@ -59,7 +61,7 @@ data class HomeBean(val issueList: List<Issue>, val newestIssueType: String, val
                         val id: Int,
                         val name: String,
                         val tagRecType: String
-                )
+                ) : Serializable
 
                 data class Author(
                         val approvedNotReadyVideoCount: Int,
@@ -73,18 +75,19 @@ data class HomeBean(val issueList: List<Issue>, val newestIssueType: String, val
                         val name: String,
                         val shield: Shield,
                         val videoNum: Int
-                ) {
+                ) : Serializable
+                {
                     data class Follow(
                             val followed: Boolean,
                             val itemId: Int,
                             val itemType: String
-                    )
+                    ): Serializable
 
                     data class Shield(
                             val itemId: Int,
                             val itemType: String,
                             val shielded: Boolean
-                    )
+                    ) : Serializable
                 }
 
                 data class Cover(
@@ -92,18 +95,18 @@ data class HomeBean(val issueList: List<Issue>, val newestIssueType: String, val
                         val detail: String,
                         val feed: String,
                         val homepage: String
-                )
+                ) : Serializable
 
                 data class WebUrl(
                         val forWeibo: String,
                         val raw: String
-                )
+                ) : Serializable
 
                 data class Provider(
                         val alias: String,
                         val icon: String,
                         val name: String
-                )
+                ) : Serializable
             }
         }
     }

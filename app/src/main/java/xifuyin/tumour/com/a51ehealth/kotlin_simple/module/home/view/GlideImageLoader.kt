@@ -12,7 +12,9 @@ class GlideImageLoader : ImageLoader() {
     override fun displayImage(mContext: Context?, url: Any?, mImaggView: ImageView?) {
         if (mContext != null && mImaggView != null) {
             Glide.with(mContext).load(url).into(mImaggView)
+
         }
+
 
     }
 

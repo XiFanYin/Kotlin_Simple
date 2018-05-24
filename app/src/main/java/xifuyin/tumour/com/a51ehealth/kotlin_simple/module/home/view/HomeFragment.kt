@@ -1,13 +1,18 @@
 package xifuyin.tumour.com.a51ehealth.kotlin_simple.module.home.view
 
+import android.content.Intent
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import com.youth.banner.Banner
 import com.youth.banner.BannerConfig
+import com.youth.banner.listener.OnBannerListener
 import kotlinx.android.synthetic.main.fragment_layout.*
+import kotlinx.android.synthetic.main.item_home_top.view.*
 import xifuyin.tumour.com.a51ehealth.kotlin_simple.R
+import xifuyin.tumour.com.a51ehealth.kotlin_simple.R.id.toolbar
 import xifuyin.tumour.com.a51ehealth.kotlin_simple.base.BaseMvpFragment
 import xifuyin.tumour.com.a51ehealth.kotlin_simple.module.home.model.HomeBean
 import xifuyin.tumour.com.a51ehealth.kotlin_simple.module.home.persenter.HomePersenter
@@ -21,6 +26,7 @@ class HomeFragment : BaseMvpFragment<HomeContact.Persenter>(), HomeContact.View 
 
     lateinit var adapter: HomeAdapter
     lateinit var banner: Banner
+    lateinit var bannerData: List<HomeBean.Issue.Item>
 
     //静态方法
     companion object {
@@ -62,6 +68,7 @@ class HomeFragment : BaseMvpFragment<HomeContact.Persenter>(), HomeContact.View 
                         toolbar.visibility = View.GONE
                         mImmersionBar?.statusBarDarkFont(false)?.init()
                         flag2 = false
+                        banner.startAutoPlay()
                     }
                 } else {
                     if (flag1) {
@@ -69,6 +76,7 @@ class HomeFragment : BaseMvpFragment<HomeContact.Persenter>(), HomeContact.View 
                         mImmersionBar?.statusBarDarkFont(true)?.init()
                         toolbar.visibility = View.VISIBLE
                         flag1 = false
+                        banner.stopAutoPlay()
                     }
                 }
             }
@@ -78,6 +86,23 @@ class HomeFragment : BaseMvpFragment<HomeContact.Persenter>(), HomeContact.View 
             mPersenter.requestNextHomeData()
         }, mRecyclerView)
 
+        //设置条目点击事件
+        adapter.setOnItemClickListener({ adapter, view, position ->
+            var intent = Intent(activity, VideoDetailActivity::class.java)
+            intent.putExtra("videodata", this.adapter.data.get(position).data)
+            startActivity(intent)
+
+        })
+        //轮播图的点击事件
+        banner.setOnBannerListener({ position ->
+            var intent = Intent(activity, VideoDetailActivity::class.java)
+            intent.putExtra("videodata", bannerData?.get(position).data)
+            startActivity(intent)
+        })
+        //搜索的点击事件
+        iv_search.setOnClickListener { view ->
+            Toast.makeText(activity, "搜索的点击事件", Toast.LENGTH_SHORT).show()
+        }
     }
 
 
@@ -96,10 +121,12 @@ class HomeFragment : BaseMvpFragment<HomeContact.Persenter>(), HomeContact.View 
 
     //得到数据后回调
     override fun getData(homeBean: HomeBean) {
+
         banner.setImageLoader(GlideImageLoader())
         var imageUrl = ArrayList<String>()
         var titles = ArrayList<String>()
-        for (lists in homeBean.issueList[0].itemList.subList(0, homeBean.issueList[0].count)) {
+        bannerData = homeBean.issueList[0].itemList.subList(0, homeBean.issueList[0].count)
+        for (lists in bannerData) {
             titles.add(lists.data.title)
             imageUrl.add(lists.data.cover.detail)
         }
