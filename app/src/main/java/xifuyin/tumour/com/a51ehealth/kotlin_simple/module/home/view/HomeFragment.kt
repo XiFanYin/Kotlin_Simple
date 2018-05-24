@@ -2,10 +2,8 @@ package xifuyin.tumour.com.a51ehealth.kotlin_simple.module.home.view
 
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.util.Log
 import android.view.View
 import android.view.ViewGroup
-import com.gyf.barlibrary.ImmersionBar
 import com.youth.banner.Banner
 import com.youth.banner.BannerConfig
 import kotlinx.android.synthetic.main.fragment_layout.*
@@ -19,6 +17,7 @@ import xifuyin.tumour.com.a51ehealth.kotlin_simple.module.home.persenter.contact
  * Created by Administrator on 2018/5/21.
  */
 class HomeFragment : BaseMvpFragment<HomeContact.Persenter>(), HomeContact.View {
+
 
     lateinit var adapter: HomeAdapter
     lateinit var banner: Banner
@@ -73,9 +72,11 @@ class HomeFragment : BaseMvpFragment<HomeContact.Persenter>(), HomeContact.View 
                     }
                 }
             }
-
-
         })
+        //加载更多
+        adapter.setOnLoadMoreListener({
+            mPersenter.requestNextHomeData()
+        }, mRecyclerView)
 
     }
 
@@ -91,6 +92,7 @@ class HomeFragment : BaseMvpFragment<HomeContact.Persenter>(), HomeContact.View 
     override fun getSerivceData() {
         mPersenter.requestHomeData(1)
     }
+
 
     //得到数据后回调
     override fun getData(homeBean: HomeBean) {
@@ -109,6 +111,11 @@ class HomeFragment : BaseMvpFragment<HomeContact.Persenter>(), HomeContact.View 
 
     }
 
+    //得到下页数据回调
+    override fun getNextData(homeBean: HomeBean) {
+        adapter.addData(homeBean.issueList[0].itemList)
+        adapter.loadMoreComplete()
+    }
 
     //当显示错误布局后的点击事件回调
     override fun onRetry() {

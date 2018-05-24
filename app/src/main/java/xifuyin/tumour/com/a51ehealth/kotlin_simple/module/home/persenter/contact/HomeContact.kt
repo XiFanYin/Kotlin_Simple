@@ -14,6 +14,7 @@ interface HomeContact {
 
         fun getData(homeBean: HomeBean)
 
+        fun getNextData(homeBean: HomeBean)
 
     }
 
@@ -23,6 +24,8 @@ interface HomeContact {
          * 获取首页精选数据
          */
         fun requestHomeData(num: Int)
+
+        fun requestNextHomeData()
 
     }
 }

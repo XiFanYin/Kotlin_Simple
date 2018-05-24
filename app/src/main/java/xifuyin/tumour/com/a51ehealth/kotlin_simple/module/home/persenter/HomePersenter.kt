@@ -1,5 +1,6 @@
 package xifuyin.tumour.com.a51ehealth.kotlin_simple.module.home.persenter
 
+import android.util.Log
 import io.reactivex.disposables.Disposable
 import xifuyin.tumour.com.a51ehealth.kotlin_simple.base.BasePresenterImpl
 import xifuyin.tumour.com.a51ehealth.kotlin_simple.module.home.model.HomeBean
@@ -15,7 +16,10 @@ import xifuyin.tumour.com.a51ehealth.kotlin_simple.net.utils.RxSchedulers
  */
 class HomePersenter(view: HomeContact.View) : BasePresenterImpl<HomeContact.View>(view), HomeContact.Persenter {
 
+
     private var bannerHomeBean: HomeBean? = null
+    private lateinit var nextPageUrl: String
+
     /**
      * 联网请求主页数据,第一次请求的数据结果是第二次请求的url
      */
@@ -45,6 +49,8 @@ class HomePersenter(view: HomeContact.View) : BasePresenterImpl<HomeContact.View
                     }
 
                     override fun onNext(t: HomeBean) {
+                        //把下一页请求地址提升成成员变量
+                        nextPageUrl = t.nextPageUrl
                         val listItemList = t.issueList[0].itemList
                         listItemList.filter { it -> it.type != "video" }.forEach { it -> listItemList.remove(it) }
                         //赋值过滤后的数据 + banner 数据
@@ -56,5 +62,30 @@ class HomePersenter(view: HomeContact.View) : BasePresenterImpl<HomeContact.View
 
 
     }
+
+
+    override fun requestNextHomeData() {
+        RetrofitUtil
+                .instance
+                .create(API::class.java)
+                .getMoreHomeData(nextPageUrl)
+                .compose(RxSchedulers.io_main())
+                .subscribe(object : BaseObserver<HomeBean>() {
+                    override fun onSubscribe(d: Disposable) {
+                        addDisposable(d)
+                    }
+
+                    override fun onNext(t: HomeBean) {
+                        nextPageUrl = t.nextPageUrl
+
+                        val listItemList = t.issueList[0].itemList
+                        listItemList.filter { it -> it.type != "video" }.forEach { it -> listItemList.remove(it) }
+                        mView?.getNextData(t)
+                    }
+
+
+                })
+    }
+
 
 }

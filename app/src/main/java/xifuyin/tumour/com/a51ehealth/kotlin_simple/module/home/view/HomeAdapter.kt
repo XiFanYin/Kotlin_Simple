@@ -19,14 +19,14 @@ class HomeAdapter(var context: Context, layoutResId: Int, data: List<HomeBean.Is
         helper.setText(R.id.tv_title, item.data.title)
         str = "#"
         for (tag in item.data.tags) {
-            str = str + "/" + tag.name
+            str = str + tag.name + "/"
         }
         helper.setText(R.id.tv_tag, str)
         helper.setText(R.id.tv_category, "#${item.data.category}")
         var iv_cover_feed = helper.getView<ImageView>(R.id.iv_cover_feed)
         Glide.with(context).load(item.data.cover.detail).into(iv_cover_feed)
         var iv_avatar = helper.getView<ImageView>(R.id.iv_avatar)
-        Glide.with(context).load(item.data.author.icon).into(iv_avatar)
+        Glide.with(context).load(item.data?.author?.icon).into(iv_avatar)
     }
 
 
