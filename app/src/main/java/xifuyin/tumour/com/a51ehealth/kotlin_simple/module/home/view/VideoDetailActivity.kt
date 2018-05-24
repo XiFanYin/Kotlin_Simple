@@ -6,6 +6,7 @@ import xifuyin.tumour.com.a51ehealth.kotlin_simple.R
 import xifuyin.tumour.com.a51ehealth.kotlin_simple.base.BaseActivity
 import xifuyin.tumour.com.a51ehealth.kotlin_simple.module.home.model.HomeBean
 import xifuyin.tumour.com.a51ehealth.xvideoview.QQBrowserController
+import xifuyin.tumour.com.a51ehealth.xvideoview.XVideoViewManager
 
 
 /**
@@ -28,8 +29,18 @@ class VideoDetailActivity : BaseActivity() {
         xVideoView.setController(controller)//让自定义播放器持有控制器对象，同时让控制器持有播放器对象，同时把控制器添加到自定义控件中
         xVideoView.setUrl(itemData.playUrl)
         xVideoView.start()
+        controller.cover
         xVideoView.enterFullScreen(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE)
     }
 
+    override fun onResume() {
+        super.onResume()
+        XVideoViewManager.getInstance().onResume()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        XVideoViewManager.getInstance().onDestroy()
+    }
 
 }
