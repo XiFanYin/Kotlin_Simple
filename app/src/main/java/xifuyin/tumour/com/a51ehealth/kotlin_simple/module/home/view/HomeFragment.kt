@@ -8,9 +8,8 @@ import android.view.ViewGroup
 import android.widget.Toast
 import com.youth.banner.Banner
 import com.youth.banner.BannerConfig
-import com.youth.banner.listener.OnBannerListener
-import kotlinx.android.synthetic.main.fragment_layout.*
-import kotlinx.android.synthetic.main.item_home_top.view.*
+import kotlinx.android.synthetic.main.home_fragment_layout.*
+import kotlinx.android.synthetic.main.home_fragment_layout.view.*
 import xifuyin.tumour.com.a51ehealth.kotlin_simple.R
 import xifuyin.tumour.com.a51ehealth.kotlin_simple.R.id.toolbar
 import xifuyin.tumour.com.a51ehealth.kotlin_simple.base.BaseMvpFragment
@@ -40,14 +39,14 @@ class HomeFragment : BaseMvpFragment<HomeContact.Persenter>(), HomeContact.View 
     override fun initPersenter(): HomeContact.Persenter = HomePersenter(this)
 
     //设置布局
-    override fun getLayoutId(): Int = R.layout.fragment_layout
+    override fun getLayoutId(): Int = R.layout.home_fragment_layout
 
     //设置监听用
     override fun initListener() {
         //设置是垂直布局
         mRecyclerView.setHasFixedSize(true)
         mRecyclerView.layoutManager = LinearLayoutManager(activity)
-        adapter = HomeAdapter(this!!.activity!!, R.layout.item_home_content, null)
+        adapter = HomeAdapter(R.layout.item_home_content, null)
         //获得头部布局
         val top = layoutInflater.inflate(R.layout.item_home_top, mRecyclerView.parent as ViewGroup, false)
         banner = top.findViewById<Banner>(R.id.banner)
@@ -89,14 +88,16 @@ class HomeFragment : BaseMvpFragment<HomeContact.Persenter>(), HomeContact.View 
         //设置条目点击事件
         adapter.setOnItemClickListener({ adapter, view, position ->
             var intent = Intent(activity, VideoDetailActivity::class.java)
-            intent.putExtra("videodata", this.adapter.data.get(position).data)
+            intent.putExtra("video_url", bannerData?.get(position).data.playUrl)
+            intent.putExtra("video_title", bannerData?.get(position).data.title)
             startActivity(intent)
 
         })
         //轮播图的点击事件
         banner.setOnBannerListener({ position ->
             var intent = Intent(activity, VideoDetailActivity::class.java)
-            intent.putExtra("videodata", bannerData?.get(position).data)
+            intent.putExtra("video_url", bannerData?.get(position).data.playUrl)
+            intent.putExtra("video_title", bannerData?.get(position).data.title)
             startActivity(intent)
         })
         //搜索的点击事件
@@ -109,7 +110,7 @@ class HomeFragment : BaseMvpFragment<HomeContact.Persenter>(), HomeContact.View 
     //状态栏用
     override fun initImmersionBar() {
         super.initImmersionBar()
-        mImmersionBar?.titleBar(toolbar)?.init()
+        mImmersionBar?.titleBar(toolbar)?.statusBarDarkFont(false)?.init()
 
     }
 

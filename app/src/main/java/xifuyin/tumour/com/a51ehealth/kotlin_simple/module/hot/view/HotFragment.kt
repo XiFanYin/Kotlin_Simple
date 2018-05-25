@@ -1,6 +1,5 @@
 package xifuyin.tumour.com.a51ehealth.kotlin_simple.module.hot.view
 
-import kotlinx.android.synthetic.main.fragment_layout.*
 import xifuyin.tumour.com.a51ehealth.kotlin_simple.R
 import xifuyin.tumour.com.a51ehealth.kotlin_simple.base.BaseFragment
 
@@ -18,7 +17,7 @@ class HotFragment : BaseFragment() {
     }
 
 
-    override fun getLayoutId(): Int = R.layout.fragment_layout
+    override fun getLayoutId(): Int = R.layout.home_fragment_layout
 
     override fun initListener() {
 

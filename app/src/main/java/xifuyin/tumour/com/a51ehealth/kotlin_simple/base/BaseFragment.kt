@@ -50,6 +50,7 @@ abstract class BaseFragment : Fragment() {
 
     open protected fun initListener2() {
         initListener()
+
     }
 
     protected abstract fun initListener()
@@ -86,8 +87,7 @@ abstract class BaseFragment : Fragment() {
      */
     open fun initImmersionBar() {
         mImmersionBar = ImmersionBar.with(this)
-        mImmersionBar?.keyboardEnable(true)?.navigationBarWithKitkatEnable(false)?.init()
-
+        mImmersionBar?.keyboardEnable(true)?.navigationBarWithKitkatEnable(false)?.statusBarDarkFont(true)?.init()
     }
 
     /**

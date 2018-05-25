@@ -4,6 +4,7 @@ import io.reactivex.Observable
 import retrofit2.http.GET
 import retrofit2.http.Query
 import retrofit2.http.Url
+import xifuyin.tumour.com.a51ehealth.kotlin_simple.module.find.model.FocusBean
 import xifuyin.tumour.com.a51ehealth.kotlin_simple.module.home.model.HomeBean
 
 /**
@@ -21,6 +22,12 @@ interface API {
      */
     @GET
     fun getMoreHomeData(@Url url: String): Observable<HomeBean>
+
+    /**
+     * 关注
+     */
+    @GET("v4/tabs/follow")
+    fun getFollowInfo(): Observable<FocusBean>
 
 }
 
