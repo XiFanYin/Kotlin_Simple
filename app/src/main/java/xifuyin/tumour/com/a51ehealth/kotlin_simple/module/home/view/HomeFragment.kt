@@ -9,9 +9,7 @@ import android.widget.Toast
 import com.youth.banner.Banner
 import com.youth.banner.BannerConfig
 import kotlinx.android.synthetic.main.home_fragment_layout.*
-import kotlinx.android.synthetic.main.home_fragment_layout.view.*
 import xifuyin.tumour.com.a51ehealth.kotlin_simple.R
-import xifuyin.tumour.com.a51ehealth.kotlin_simple.R.id.toolbar
 import xifuyin.tumour.com.a51ehealth.kotlin_simple.base.BaseMvpFragment
 import xifuyin.tumour.com.a51ehealth.kotlin_simple.module.home.model.HomeBean
 import xifuyin.tumour.com.a51ehealth.kotlin_simple.module.home.persenter.HomePersenter
@@ -26,6 +24,7 @@ class HomeFragment : BaseMvpFragment<HomeContact.Persenter>(), HomeContact.View 
     lateinit var adapter: HomeAdapter
     lateinit var banner: Banner
     lateinit var bannerData: List<HomeBean.Issue.Item>
+    var isShowLoading: Boolean = true
 
     //静态方法
     companion object {
@@ -82,14 +81,15 @@ class HomeFragment : BaseMvpFragment<HomeContact.Persenter>(), HomeContact.View 
         })
         //加载更多
         adapter.setOnLoadMoreListener({
+            isShowLoading = false
             mPersenter.requestNextHomeData()
         }, mRecyclerView)
 
         //设置条目点击事件
         adapter.setOnItemClickListener({ adapter, view, position ->
             var intent = Intent(activity, VideoDetailActivity::class.java)
-            intent.putExtra("video_url", bannerData?.get(position).data.playUrl)
-            intent.putExtra("video_title", bannerData?.get(position).data.title)
+            intent.putExtra("video_url", this.adapter.data?.get(position).data.playUrl)
+            intent.putExtra("video_title", this.adapter.data?.get(position).data.title)
             startActivity(intent)
 
         })
@@ -122,7 +122,6 @@ class HomeFragment : BaseMvpFragment<HomeContact.Persenter>(), HomeContact.View 
 
     //得到数据后回调
     override fun getData(homeBean: HomeBean) {
-
         banner.setImageLoader(GlideImageLoader())
         var imageUrl = ArrayList<String>()
         var titles = ArrayList<String>()
@@ -149,4 +148,12 @@ class HomeFragment : BaseMvpFragment<HomeContact.Persenter>(), HomeContact.View 
     override fun onRetry() {
         mPersenter.requestHomeData(1)
     }
+
+    override fun showLoading() {
+        if (isShowLoading) {
+            super.showLoading()
+        }
+
+    }
+
 }

@@ -1,6 +1,7 @@
 package xifuyin.tumour.com.a51ehealth.kotlin_simple.module.find.view
 
 import android.support.v7.widget.LinearLayoutManager
+import android.util.Log
 import kotlinx.android.synthetic.main.focus_fragment_layout.*
 import xifuyin.tumour.com.a51ehealth.kotlin_simple.R
 import xifuyin.tumour.com.a51ehealth.kotlin_simple.base.BaseMvpFragment
@@ -15,6 +16,8 @@ class FocusFragment : BaseMvpFragment<FocusContact.Persenter>(), FocusContact.Vi
 
 
     lateinit var adapter: FocusAdapter
+    var hasMore: Boolean = false
+    var isShowLoading: Boolean = true
 
     //静态方法
     companion object {
@@ -40,7 +43,10 @@ class FocusFragment : BaseMvpFragment<FocusContact.Persenter>(), FocusContact.Vi
         mRecyclerView.adapter = adapter
         //加载更多
         adapter.setOnLoadMoreListener({
-            mPersenter.getMoreData()
+            isShowLoading = false
+            if (hasMore) {
+                mPersenter.getMoreData()
+            }
         }, mRecyclerView)
     }
 
@@ -49,17 +55,31 @@ class FocusFragment : BaseMvpFragment<FocusContact.Persenter>(), FocusContact.Vi
 
     }
 
-    override fun setData(data: FocusBean) {
+    override fun setData(data: FocusBean, hasMore: Boolean) {
+        this.hasMore = hasMore
         adapter.setNewData(data.itemList)
     }
 
-    override fun setMoreData(data: FocusBean) {
+    override fun setMoreData(data: FocusBean, hasMore: Boolean) {
+        this.hasMore = hasMore
         adapter.addData(data.itemList)
-        adapter.loadMoreComplete()
+        if (hasMore) {
+            adapter.loadMoreComplete()
+        } else {
+            adapter.loadMoreEnd()
+
+        }
+
     }
 
 
     override fun onRetry() {
         mPersenter.getData()
+    }
+
+    override fun showLoading() {
+        if (isShowLoading) {
+            super.showLoading()
+        }
     }
 }

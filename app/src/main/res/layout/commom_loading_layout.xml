@@ -11,7 +11,7 @@
         style="@style/myProgressBarStyleLarge"
         android:layout_width="35dp"
         android:layout_height="35dp"
-        android:indeterminateDuration="1500"
+        android:indeterminateDuration="4500"
         android:visibility="visible" />
 
     <TextView
@@ -19,7 +19,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:text="加载中"
+        android:text="加载中..."
         android:textColor="#ffffff"
         android:textSize="12sp" />
 </LinearLayout>

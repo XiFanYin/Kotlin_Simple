@@ -70,6 +70,7 @@ class HomePersenter(view: HomeContact.View) : BasePresenterImpl<HomeContact.View
                 .create(API::class.java)
                 .getMoreHomeData(nextPageUrl)
                 .compose(RxSchedulers.io_main())
+                .compose(Loading())
                 .subscribe(object : BaseObserver<HomeBean>() {
                     override fun onSubscribe(d: Disposable) {
                         addDisposable(d)

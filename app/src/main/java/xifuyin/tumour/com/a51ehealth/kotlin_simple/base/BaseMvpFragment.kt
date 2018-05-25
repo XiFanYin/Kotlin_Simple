@@ -81,15 +81,15 @@ abstract class BaseMvpFragment<P : BasePresenter> : BaseFragment(), BaseView {
 
 
     open override fun dissmassLoading() {
-        dialog!!.dismiss()
+        dialog?.dismiss()
         dialog = null
     }
 
     open override fun showLoading() {
         //这里如果是null，直接抛异常
         dialog = LoadingDialog(this!!.activity!!)
-        dialog!!.setCanceledOnTouchOutside(false)
-        dialog!!.show()
+        dialog?.setCanceledOnTouchOutside(false)
+        dialog?.show()
     }
 
 

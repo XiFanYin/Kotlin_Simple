@@ -31,7 +31,7 @@
     <!--加载中的dialog样式-->
     <style name="myProgressBarStyleLarge">
         <item name="android:indeterminateDrawable">@drawable/rotate_loading_icon</item>
-        <item name="android:indeterminateDuration">1500</item>
+        <item name="android:indeterminateDuration">4500</item>
         　　
         <item name="android:minWidth">50dip</item>
         　　
