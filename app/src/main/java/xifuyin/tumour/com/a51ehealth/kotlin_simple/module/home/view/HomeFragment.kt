@@ -25,8 +25,10 @@ class HomeFragment : BaseMvpFragment<HomeContact.Persenter>(), HomeContact.View 
 
     lateinit var adapter: HomeAdapter
     lateinit var banner: Banner
-    lateinit var bannerData: List<HomeBean.Issue.Item>
     var isShowLoading: Boolean = true
+    var playurl = ArrayList<String>()
+    var imageUrl = ArrayList<String>()
+    var titles = ArrayList<String>()
 
     //静态方法
     companion object {
@@ -98,8 +100,8 @@ class HomeFragment : BaseMvpFragment<HomeContact.Persenter>(), HomeContact.View 
         //轮播图的点击事件
         banner.setOnBannerListener({ position ->
             var intent = Intent(activity, VideoDetailActivity::class.java)
-            intent.putExtra("video_url", bannerData?.get(position).data.playUrl)
-            intent.putExtra("video_title", bannerData?.get(position).data.title)
+            intent.putExtra("video_url", playurl?.get(position))
+            intent.putExtra("video_title", titles?.get(position))
             startActivity(intent)
         })
         //搜索的点击事件
@@ -125,12 +127,12 @@ class HomeFragment : BaseMvpFragment<HomeContact.Persenter>(), HomeContact.View 
     //得到数据后回调
     override fun getData(homeBean: HomeBean) {
         banner.setImageLoader(GlideImageLoader())
-        var imageUrl = ArrayList<String>()
-        var titles = ArrayList<String>()
-        bannerData = homeBean.issueList[0].itemList.subList(0, homeBean.issueList[0].count)
+
+        var bannerData = homeBean.issueList[0].itemList.subList(0, homeBean.issueList[0].count)
         for (lists in bannerData) {
             titles.add(lists.data.title)
             imageUrl.add(lists.data.cover.detail)
+            playurl.add(lists.data.playUrl)
         }
         banner.setBannerStyle(BannerConfig.CIRCLE_INDICATOR_TITLE_INSIDE)
         banner.setImages(imageUrl)
