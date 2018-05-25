@@ -15,11 +15,15 @@ interface FocusContact {
 
 
         fun setData(data: FocusBean)
+
+        fun setMoreData(data: FocusBean)
     }
 
 
     interface Persenter : BasePresenter {
 
         fun getData();
+
+        fun getMoreData()
     }
 }

@@ -29,5 +29,12 @@ interface API {
     @GET("v4/tabs/follow")
     fun getFollowInfo(): Observable<FocusBean>
 
+
+    /**
+     * 获取更多的关注
+     */
+    @GET
+    fun getFollowData(@Url url: String): Observable<FocusBean>
+
 }
 

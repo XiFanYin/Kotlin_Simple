@@ -13,6 +13,7 @@ import xifuyin.tumour.com.a51ehealth.kotlin_simple.module.find.persenter.contact
  */
 class FocusFragment : BaseMvpFragment<FocusContact.Persenter>(), FocusContact.View {
 
+
     lateinit var adapter: FocusAdapter
 
     //静态方法
@@ -37,7 +38,10 @@ class FocusFragment : BaseMvpFragment<FocusContact.Persenter>(), FocusContact.Vi
         adapter = FocusAdapter(null, R.layout.item_focus_fragment)
         //设置adapter
         mRecyclerView.adapter = adapter
-
+        //加载更多
+        adapter.setOnLoadMoreListener({
+            mPersenter.getMoreData()
+        }, mRecyclerView)
     }
 
     override fun getSerivceData() {
@@ -49,8 +53,13 @@ class FocusFragment : BaseMvpFragment<FocusContact.Persenter>(), FocusContact.Vi
         adapter.setNewData(data.itemList)
     }
 
+    override fun setMoreData(data: FocusBean) {
+        adapter.addData(data.itemList)
+        adapter.loadMoreComplete()
+    }
+
 
     override fun onRetry() {
-
+        mPersenter.getData()
     }
 }
