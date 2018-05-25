@@ -1,4 +1,4 @@
-package xifuyin.tumour.com.a51ehealth.kotlin_simple.module.find.view
+package xifuyin.tumour.com.a51ehealth.kotlin_simple.module.find.view.adapter
 
 import android.widget.ImageView
 import com.bumptech.glide.Glide

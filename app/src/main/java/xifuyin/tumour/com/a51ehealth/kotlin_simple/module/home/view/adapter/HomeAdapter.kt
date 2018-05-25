@@ -1,4 +1,4 @@
-package xifuyin.tumour.com.a51ehealth.kotlin_simple.module.home.view
+package xifuyin.tumour.com.a51ehealth.kotlin_simple.module.home.view.adapter
 
 
 import android.content.Context

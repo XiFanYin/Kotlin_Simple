@@ -1,5 +1,6 @@
 package xifuyin.tumour.com.a51ehealth.kotlin_simple.module.find.model
 
+import java.io.Serializable
 
 
 data class ClassifyBean(
@@ -10,4 +11,4 @@ data class ClassifyBean(
     val headerImage: String,
     val id: Int,
     val name: String
-)
+):Serializable

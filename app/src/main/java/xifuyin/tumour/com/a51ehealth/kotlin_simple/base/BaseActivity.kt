@@ -43,7 +43,7 @@ abstract class BaseActivity : AppCompatActivity() {
 
     //============================和布局有关的方法==================================
 
-    fun getLayout2(): Int {
+  open  fun getLayout2(): Int {
         return getLayout()
     }
 
@@ -51,7 +51,7 @@ abstract class BaseActivity : AppCompatActivity() {
 
 
     //========================和设置监听有关的方法==============================
-    protected fun initListener2() {
+    open fun initListener2() {
         initListener()
     }
 

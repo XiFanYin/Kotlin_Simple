@@ -14,6 +14,8 @@ import xifuyin.tumour.com.a51ehealth.kotlin_simple.base.BaseMvpFragment
 import xifuyin.tumour.com.a51ehealth.kotlin_simple.module.home.model.HomeBean
 import xifuyin.tumour.com.a51ehealth.kotlin_simple.module.home.persenter.HomePersenter
 import xifuyin.tumour.com.a51ehealth.kotlin_simple.module.home.persenter.contact.HomeContact
+import xifuyin.tumour.com.a51ehealth.kotlin_simple.module.home.view.adapter.GlideImageLoader
+import xifuyin.tumour.com.a51ehealth.kotlin_simple.module.home.view.adapter.HomeAdapter
 
 /**
  * Created by Administrator on 2018/5/21.

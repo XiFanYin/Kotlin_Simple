@@ -1,12 +1,10 @@
-package xifuyin.tumour.com.a51ehealth.kotlin_simple.module.find.view
+package xifuyin.tumour.com.a51ehealth.kotlin_simple.module.find.view.adapter
 
 import android.app.Activity
 import android.content.Intent
-import android.support.v4.content.ContextCompat.startActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.widget.ImageView
-import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder

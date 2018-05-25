@@ -1,13 +1,13 @@
 package xifuyin.tumour.com.a51ehealth.kotlin_simple.module.find.view
 
 import android.support.v7.widget.LinearLayoutManager
-import android.util.Log
 import kotlinx.android.synthetic.main.focus_fragment_layout.*
 import xifuyin.tumour.com.a51ehealth.kotlin_simple.R
 import xifuyin.tumour.com.a51ehealth.kotlin_simple.base.BaseMvpFragment
 import xifuyin.tumour.com.a51ehealth.kotlin_simple.module.find.model.FocusBean
 import xifuyin.tumour.com.a51ehealth.kotlin_simple.module.find.persenter.FocusPersenter
 import xifuyin.tumour.com.a51ehealth.kotlin_simple.module.find.persenter.contact.FocusContact
+import xifuyin.tumour.com.a51ehealth.kotlin_simple.module.find.view.adapter.FocusAdapter
 
 /**
  * Created by Administrator on 2018/5/24.
