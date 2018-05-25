@@ -50,7 +50,6 @@ abstract class BaseActivity : AppCompatActivity() {
     abstract fun getLayout(): Int
 
 
-
     //========================和设置监听有关的方法==============================
     protected fun initListener2() {
         initListener()
@@ -65,7 +64,6 @@ abstract class BaseActivity : AppCompatActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
-        if (mImmersionBar != null)
-            mImmersionBar.destroy()
+        mImmersionBar.destroy()
     }
 }

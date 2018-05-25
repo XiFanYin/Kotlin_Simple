@@ -16,7 +16,7 @@ object TableLayoutUtils {
         var tabStrip: Field? = null
         try {
             tabStrip = tabLayout.getDeclaredField("mTabStrip")
-        } catch (e: NoSuchFieldException) {
+        } catch (e: Exception) {
             e.printStackTrace()
         }
 

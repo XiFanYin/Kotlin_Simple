@@ -29,7 +29,7 @@ class FocusAdapter(data: List<FocusBean.Item>?, layout: Int) : BaseQuickAdapter<
         fl_recyclerView.layoutManager = LinearLayoutManager(mContext as Activity, LinearLayoutManager.HORIZONTAL, false)
         var adapter = FocusItemAdapter(item.data.itemList, R.layout.item_focus_horizontal)
         fl_recyclerView.adapter = adapter
-        adapter.setOnItemClickListener { adapter, view, position ->
+        adapter.setOnItemClickListener { _, _, position ->
             var intent = Intent(mContext, VideoDetailActivity::class.java)
             intent.putExtra("video_url", item.data.itemList.get(position).data.playUrl)
             intent.putExtra("video_title", item.data.itemList.get(position).data.title)
