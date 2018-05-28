@@ -8,6 +8,8 @@ import xifuyin.tumour.com.a51ehealth.kotlin_simple.module.find.model.ClassifyBea
 import xifuyin.tumour.com.a51ehealth.kotlin_simple.module.find.model.ClassifyDetailBean
 import xifuyin.tumour.com.a51ehealth.kotlin_simple.module.find.model.FocusBean
 import xifuyin.tumour.com.a51ehealth.kotlin_simple.module.home.model.HomeBean
+import xifuyin.tumour.com.a51ehealth.kotlin_simple.module.hot.model.RankBean
+import xifuyin.tumour.com.a51ehealth.kotlin_simple.module.hot.model.TabInfoBean
 
 /**
  * Created by Administrator on 2018/5/22.
@@ -52,14 +54,24 @@ interface API {
     @GET("v4/categories/videoList?")
     fun getCategoryDetailList(@Query("id") id: Long): Observable<ClassifyDetailBean>
 
-
-
-
     /**
      * 获取更多的 详情List
      */
     @GET
     fun getMoreCategoryDetailListData(@Url url: String): Observable<ClassifyDetailBean>
+
+    /**
+     * 获取全部排行榜的Info（包括，title 和 Url）
+     */
+    @GET("v4/rankList")
+    fun getRankList(): Observable<TabInfoBean>
+
+
+    /**
+     * 获取分类排行
+     */
+    @GET
+    fun getRankClassifyData(@Url url: String): Observable<RankBean>
 
 }
 

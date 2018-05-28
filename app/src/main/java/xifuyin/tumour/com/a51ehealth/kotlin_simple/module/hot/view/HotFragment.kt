@@ -5,16 +5,16 @@ import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
 import kotlinx.android.synthetic.main.fragment_find_layout.*
 import xifuyin.tumour.com.a51ehealth.kotlin_simple.R
-import xifuyin.tumour.com.a51ehealth.kotlin_simple.base.BaseFragment
-import xifuyin.tumour.com.a51ehealth.kotlin_simple.module.find.view.ClassifyFragment
-import xifuyin.tumour.com.a51ehealth.kotlin_simple.module.find.view.FocusFragment
+import xifuyin.tumour.com.a51ehealth.kotlin_simple.base.BaseMvpFragment
+import xifuyin.tumour.com.a51ehealth.kotlin_simple.module.hot.model.TabInfoBean
+import xifuyin.tumour.com.a51ehealth.kotlin_simple.module.hot.persenter.HotPersenter
+import xifuyin.tumour.com.a51ehealth.kotlin_simple.module.hot.persenter.contact.HotContact
 import xifuyin.tumour.com.a51ehealth.kotlin_simple.utils.TableLayoutUtils
 
 /**
  * Created by Administrator on 2018/5/21.
  */
-class HotFragment : BaseFragment() {
-
+class HotFragment : BaseMvpFragment<HotContact.Persenter>(), HotContact.View {
     //静态方法
     companion object {
         fun getInstance(): HotFragment {
@@ -23,12 +23,8 @@ class HotFragment : BaseFragment() {
         }
     }
 
+    override fun initPersenter(): HotContact.Persenter = HotPersenter(this)
 
-    override fun getLayoutId(): Int = R.layout.fragment_hot_layout
-
-    override fun initListener() {
-
-    }
 
     override fun initImmersionBar() {
         super.initImmersionBar()
@@ -36,19 +32,31 @@ class HotFragment : BaseFragment() {
 
     }
 
+    override fun getLayoutId(): Int = R.layout.fragment_hot_layout
+
+
+    override fun initListener() {
+
+    }
+
     override fun getSerivceData() {
+        mPersenter.getTableData()
+
+    }
+
+    override fun setTableData(data: TabInfoBean) {
+
         val tabList = ArrayList<String>()
         var fragments = ArrayList<Fragment>()
-        fragments.add(WeekRankFragment.getInstance())
-        fragments.add(MonthRankFragment.getInstance())
-        fragments.add(TotalRankFragment.getInstance())
-        tabList.add("周排行")
-        tabList.add("月排行")
-        tabList.add("总排行")
+        data.tabInfo.tabList.mapTo(tabList) { it.name }
+        data.tabInfo.tabList.mapTo(fragments) { RankFragment.getInstance(it.apiUrl) }
         var adapter = MyAdapter(fragments, tabList, childFragmentManager)
         mViewPager.adapter = adapter
         mTabLayout.setupWithViewPager(mViewPager)
+        mViewPager.offscreenPageLimit = tabList.size - 1
         mTabLayout.post({ TableLayoutUtils.setIndicator(mTabLayout, 60, 60) })
+
+
     }
 
 
@@ -57,4 +65,14 @@ class HotFragment : BaseFragment() {
         override fun getCount(): Int = fragments.size
         override fun getPageTitle(position: Int): CharSequence = titles[position]
     }
+
+
+    override fun onRetry() {
+        mPersenter.getTableData()
+    }
+
+
+
+
+
 }
