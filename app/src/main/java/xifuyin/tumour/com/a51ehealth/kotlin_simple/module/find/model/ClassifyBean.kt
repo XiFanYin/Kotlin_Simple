@@ -9,6 +9,6 @@ data class ClassifyBean(
     val defaultAuthorId: Int,
     val description: String,
     val headerImage: String,
-    val id: Int,
+    val id: Long,
     val name: String
 ):Serializable

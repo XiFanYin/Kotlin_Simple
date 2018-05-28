@@ -35,7 +35,7 @@ abstract class BaseActivity : AppCompatActivity() {
     }
 
 
-    fun initBar() {
+  open  fun initBar() {
         //沉浸式状态栏
         mImmersionBar = ImmersionBar.with(this)
         mImmersionBar.init()
@@ -59,7 +59,7 @@ abstract class BaseActivity : AppCompatActivity() {
 
     //========================和获取数据有关的方法==============================
 
-    fun getSerivceData() {}
+   open fun getSerivceData() {}
 
 
     override fun onDestroy() {

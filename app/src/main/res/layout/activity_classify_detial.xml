@@ -8,7 +8,8 @@
     <android.support.design.widget.AppBarLayout
         android:id="@+id/app_bar"
         android:layout_width="match_parent"
-        android:layout_height="260dp">
+        android:layout_height="260dp"
+        android:background="#ffffff">
 
         <!--- scroll – 想滚动就必须设置这个。
               enterAlways – 实现quick return效果, 当向下移动时，立即显示View（比如Toolbar)。
@@ -20,7 +21,7 @@
             android:id="@+id/collapsing_toolbar_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:contentScrim="#000000"
+            app:contentScrim="#eeeeee"
             app:expandedTitleMarginEnd="50dp"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
@@ -40,7 +41,8 @@
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                app:layout_collapseMode="pin" />
+                app:layout_collapseMode="pin"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -67,5 +69,6 @@
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
     </android.support.v7.widget.RecyclerView>
+
 
 </android.support.design.widget.CoordinatorLayout>

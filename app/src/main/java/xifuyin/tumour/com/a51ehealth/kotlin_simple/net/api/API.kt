@@ -5,6 +5,7 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 import retrofit2.http.Url
 import xifuyin.tumour.com.a51ehealth.kotlin_simple.module.find.model.ClassifyBean
+import xifuyin.tumour.com.a51ehealth.kotlin_simple.module.find.model.ClassifyDetailBean
 import xifuyin.tumour.com.a51ehealth.kotlin_simple.module.find.model.FocusBean
 import xifuyin.tumour.com.a51ehealth.kotlin_simple.module.home.model.HomeBean
 
@@ -43,6 +44,13 @@ interface API {
      */
     @GET("v4/categories")
     fun getClassify(): Observable<ArrayList<ClassifyBean>>
+
+
+    /**
+     * 获取分类详情List
+     */
+    @GET("v4/categories/videoList?")
+    fun getCategoryDetailList(@Query("id") id: Long): Observable<ClassifyDetailBean>
 
 }
 
