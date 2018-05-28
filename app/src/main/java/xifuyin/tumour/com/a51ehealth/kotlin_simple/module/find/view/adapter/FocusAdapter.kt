@@ -25,7 +25,7 @@ class FocusAdapter(data: List<FocusBean.Item>?, layout: Int) : BaseQuickAdapter<
         var fl_recyclerView = helper.getView<RecyclerView>(R.id.fl_recyclerView)
         fl_recyclerView.setHasFixedSize(true)
         fl_recyclerView.layoutManager = LinearLayoutManager(mContext as Activity, LinearLayoutManager.HORIZONTAL, false)
-        var adapter = FocusItemAdapter(item.data.itemList, R.layout.item_focus_horizontal)
+        var adapter = FocusItemAdapter(item.data.itemList, R.layout.item_focus_horizontal_layout)
         fl_recyclerView.adapter = adapter
         adapter.setOnItemClickListener { _, _, position ->
             var intent = Intent(mContext, VideoDetailActivity::class.java)

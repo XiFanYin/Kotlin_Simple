@@ -17,7 +17,7 @@ class MeFragment : BaseFragment() {
     }
 
 
-    override fun getLayoutId(): Int = R.layout.home_fragment_layout
+    override fun getLayoutId(): Int = R.layout.fragment_home_layout
 
     override fun initListener() {
 

@@ -6,7 +6,7 @@ import android.graphics.Typeface
 import android.view.animation.AlphaAnimation
 import android.view.animation.Animation
 import com.tbruyelle.rxpermissions2.RxPermissions
-import kotlinx.android.synthetic.main.activity_splash.*
+import kotlinx.android.synthetic.main.activity_splash_layout.*
 import xifuyin.tumour.com.a51ehealth.kotlin_simple.app.App
 import xifuyin.tumour.com.a51ehealth.kotlin_simple.base.BaseActivity
 
@@ -26,7 +26,7 @@ class SplashActivity : BaseActivity() {
         alphaAnimation = AlphaAnimation(0.3f, 1.0f)
     }
     //重写设置布局的方法
-    override fun getLayout(): Int = R.layout.activity_splash
+    override fun getLayout(): Int = R.layout.activity_splash_layout
 
     //设置监听的方法
     override fun initListener() {

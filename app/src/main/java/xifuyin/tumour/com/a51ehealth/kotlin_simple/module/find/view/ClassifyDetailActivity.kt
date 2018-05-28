@@ -6,9 +6,8 @@ import android.graphics.PorterDuff
 import android.support.design.widget.AppBarLayout
 import android.support.v4.content.ContextCompat
 import android.support.v7.widget.LinearLayoutManager
-import android.util.Log
 import com.bumptech.glide.Glide
-import kotlinx.android.synthetic.main.activity_classify_detial.*
+import kotlinx.android.synthetic.main.activity_classify_detial_layout.*
 import xifuyin.tumour.com.a51ehealth.kotlin_simple.R
 import xifuyin.tumour.com.a51ehealth.kotlin_simple.base.BaseMvpActivity
 import xifuyin.tumour.com.a51ehealth.kotlin_simple.module.find.model.ClassifyBean
@@ -33,14 +32,14 @@ class ClassifyDetailActivity : BaseMvpActivity<ClassifyDetailPersenter>(), Class
     override fun initPersenter(): ClassifyDetailPersenter = ClassifyDetailPersenter(this)
 
 
-    override fun getLayout(): Int = R.layout.activity_classify_detial
+    override fun getLayout(): Int = R.layout.activity_classify_detial_layout
 
     override fun initListener() {
         data = intent.getSerializableExtra("data") as ClassifyBean?;
         Glide.with(this).load(data?.headerImage).into(imageView)
         tv_category_desc.setText("#${data?.description}#")
         collapsing_toolbar_layout.title = data?.name
-        adapter = ClassifyDetailAdapter(null, R.layout.item_classify_detail)
+        adapter = ClassifyDetailAdapter(null, R.layout.item_classify_detail_layout)
         mRecyclerView.setHasFixedSize(true)
         mRecyclerView.layoutManager = LinearLayoutManager(this)
         mRecyclerView.adapter = adapter

@@ -1,11 +1,9 @@
 package xifuyin.tumour.com.a51ehealth.kotlin_simple.module.home.view
 
 import android.content.pm.ActivityInfo
-import com.bumptech.glide.Glide
-import kotlinx.android.synthetic.main.activity_vidio_detail.*
+import kotlinx.android.synthetic.main.activity_vidio_detail_layout.*
 import xifuyin.tumour.com.a51ehealth.kotlin_simple.R
 import xifuyin.tumour.com.a51ehealth.kotlin_simple.base.BaseActivity
-import xifuyin.tumour.com.a51ehealth.kotlin_simple.module.home.model.HomeBean
 import xifuyin.tumour.com.a51ehealth.xvideoview.QQBrowserController
 import xifuyin.tumour.com.a51ehealth.xvideoview.XVideoViewManager
 
@@ -18,7 +16,7 @@ import xifuyin.tumour.com.a51ehealth.xvideoview.XVideoViewManager
 class VideoDetailActivity : BaseActivity() {
 
 
-    override fun getLayout(): Int = R.layout.activity_vidio_detail
+    override fun getLayout(): Int = R.layout.activity_vidio_detail_layout
 
 
     override fun initListener() {

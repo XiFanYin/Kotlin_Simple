@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import com.youth.banner.Banner
 import com.youth.banner.BannerConfig
-import kotlinx.android.synthetic.main.home_fragment_layout.*
+import kotlinx.android.synthetic.main.fragment_home_layout.*
 import xifuyin.tumour.com.a51ehealth.kotlin_simple.R
 import xifuyin.tumour.com.a51ehealth.kotlin_simple.base.BaseMvpFragment
 import xifuyin.tumour.com.a51ehealth.kotlin_simple.module.home.model.HomeBean
@@ -42,16 +42,16 @@ class HomeFragment : BaseMvpFragment<HomeContact.Persenter>(), HomeContact.View 
     override fun initPersenter(): HomeContact.Persenter = HomePersenter(this)
 
     //设置布局
-    override fun getLayoutId(): Int = R.layout.home_fragment_layout
+    override fun getLayoutId(): Int = R.layout.fragment_home_layout
 
     //设置监听用
     override fun initListener() {
         //设置是垂直布局
         mRecyclerView.setHasFixedSize(true)
         mRecyclerView.layoutManager = LinearLayoutManager(activity)
-        adapter = HomeAdapter(R.layout.item_home_content, null)
+        adapter = HomeAdapter(R.layout.item_home_content_layout, null)
         //获得头部布局
-        val top = layoutInflater.inflate(R.layout.item_home_top, mRecyclerView.parent as ViewGroup, false)
+        val top = layoutInflater.inflate(R.layout.item_home_top_layout, mRecyclerView.parent as ViewGroup, false)
         banner = top.findViewById<Banner>(R.id.banner)
         //添加头部
         adapter.addHeaderView(top)

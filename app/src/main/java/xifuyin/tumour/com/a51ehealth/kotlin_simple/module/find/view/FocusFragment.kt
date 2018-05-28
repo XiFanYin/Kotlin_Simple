@@ -1,7 +1,7 @@
 package xifuyin.tumour.com.a51ehealth.kotlin_simple.module.find.view
 
 import android.support.v7.widget.LinearLayoutManager
-import kotlinx.android.synthetic.main.focus_fragment_layout.*
+import kotlinx.android.synthetic.main.fragment_focus_layout.*
 import xifuyin.tumour.com.a51ehealth.kotlin_simple.R
 import xifuyin.tumour.com.a51ehealth.kotlin_simple.base.BaseMvpFragment
 import xifuyin.tumour.com.a51ehealth.kotlin_simple.module.find.model.FocusBean
@@ -29,7 +29,7 @@ class FocusFragment : BaseMvpFragment<FocusContact.Persenter>(), FocusContact.Vi
 
     override fun initPersenter(): FocusContact.Persenter = FocusPersenter(this)
 
-    override fun getLayoutId(): Int = R.layout.focus_fragment_layout
+    override fun getLayoutId(): Int = R.layout.fragment_focus_layout
 
 
     override fun initListener() {
@@ -38,7 +38,7 @@ class FocusFragment : BaseMvpFragment<FocusContact.Persenter>(), FocusContact.Vi
         //设置布局是垂直显示
         mRecyclerView.layoutManager = LinearLayoutManager(activity)
         //创建adapter
-        adapter = FocusAdapter(null, R.layout.item_focus_fragment)
+        adapter = FocusAdapter(null, R.layout.item_focus_layout)
         //设置adapter
         mRecyclerView.adapter = adapter
         //加载更多

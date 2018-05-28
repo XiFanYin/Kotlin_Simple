@@ -3,7 +3,7 @@ package xifuyin.tumour.com.a51ehealth.kotlin_simple.module.find.view
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
-import kotlinx.android.synthetic.main.find_fragment_layout.*
+import kotlinx.android.synthetic.main.fragment_find_layout.*
 import xifuyin.tumour.com.a51ehealth.kotlin_simple.R
 import xifuyin.tumour.com.a51ehealth.kotlin_simple.base.BaseFragment
 import xifuyin.tumour.com.a51ehealth.kotlin_simple.utils.TableLayoutUtils
@@ -25,7 +25,7 @@ class FindFragment : BaseFragment() {
     }
 
 
-    override fun getLayoutId(): Int = R.layout.find_fragment_layout
+    override fun getLayoutId(): Int = R.layout.fragment_find_layout
 
     override fun initListener() {
 

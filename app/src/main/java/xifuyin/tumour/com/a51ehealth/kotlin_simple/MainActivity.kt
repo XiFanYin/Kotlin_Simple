@@ -5,7 +5,7 @@ import android.support.design.widget.BottomNavigationView
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
 import android.view.MenuItem
-import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_main_layout.*
 import xifuyin.tumour.com.a51ehealth.kotlin_simple.base.BaseActivity
 import xifuyin.tumour.com.a51ehealth.kotlin_simple.module.find.view.FindFragment
 import xifuyin.tumour.com.a51ehealth.kotlin_simple.module.home.view.HomeFragment
@@ -18,7 +18,7 @@ class MainActivity : BaseActivity(), BottomNavigationView.OnNavigationItemSelect
 
     private val fragments = ArrayList<android.support.v4.app.Fragment>(4)
 
-    override fun getLayout(): Int = R.layout.activity_main
+    override fun getLayout(): Int = R.layout.activity_main_layout
 
 
     override fun initListener() {
