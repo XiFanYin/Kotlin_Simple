@@ -1,5 +1,6 @@
 package xifuyin.tumour.com.a51ehealth.kotlin_simple.module.find.view
 
+import android.content.Intent
 import android.graphics.Color
 import android.graphics.PorterDuff
 import android.support.design.widget.AppBarLayout
@@ -15,6 +16,7 @@ import xifuyin.tumour.com.a51ehealth.kotlin_simple.module.find.model.ClassifyDet
 import xifuyin.tumour.com.a51ehealth.kotlin_simple.module.find.persenter.ClassifyDetailPersenter
 import xifuyin.tumour.com.a51ehealth.kotlin_simple.module.find.persenter.contact.ClassifyDetailContact
 import xifuyin.tumour.com.a51ehealth.kotlin_simple.module.find.view.adapter.ClassifyDetailAdapter
+import xifuyin.tumour.com.a51ehealth.kotlin_simple.module.home.view.VideoDetailActivity
 import xifuyin.tumour.com.a51ehealth.kotlin_simple.utils.AppBarStateChangeListener
 
 
@@ -26,7 +28,8 @@ class ClassifyDetailActivity : BaseMvpActivity<ClassifyDetailPersenter>(), Class
 
     var data: ClassifyBean? = null
     var adapter: ClassifyDetailAdapter? = null
-
+    var hasMore: Boolean = false
+    var isShowLoading: Boolean = true
     override fun initPersenter(): ClassifyDetailPersenter = ClassifyDetailPersenter(this)
 
 
@@ -63,6 +66,21 @@ class ClassifyDetailActivity : BaseMvpActivity<ClassifyDetailPersenter>(), Class
 
             }
         })
+        //加载更多
+        adapter?.setOnLoadMoreListener({
+            if (hasMore) {
+                isShowLoading = false
+                mPersenter.getLoadMoreData()
+            }
+        }, mRecyclerView)
+        //条目点击事件
+        adapter?.setOnItemClickListener({ _, _, position ->
+            var intent = Intent(this, VideoDetailActivity::class.java)
+            intent.putExtra("video_url", this.adapter?.data?.get(position)?.data?.playUrl)
+            intent.putExtra("video_title", this.adapter?.data?.get(position)?.data?.title)
+            startActivity(intent)
+        })
+
     }
 
 
@@ -70,10 +88,16 @@ class ClassifyDetailActivity : BaseMvpActivity<ClassifyDetailPersenter>(), Class
         mPersenter.getData(data?.id!!)
     }
 
-    override fun setData(data: ClassifyDetailBean) {
+    override fun setData(data: ClassifyDetailBean, hasMore: Boolean) {
+        this.hasMore = hasMore
         adapter?.setNewData(data.itemList)
     }
 
+    override fun setMoreData(data: ClassifyDetailBean, hasMore: Boolean) {
+        this.hasMore = hasMore
+        adapter?.addData(data.itemList)
+        adapter?.loadMoreComplete()
+    }
 
 
     override fun onRetry() {
@@ -85,6 +109,13 @@ class ClassifyDetailActivity : BaseMvpActivity<ClassifyDetailPersenter>(), Class
         val upArrow = ContextCompat.getDrawable(this, R.drawable.abc_ic_ab_back_material)
         upArrow?.setColorFilter(ContextCompat.getColor(this, color), PorterDuff.Mode.SRC_ATOP)
         supportActionBar?.setHomeAsUpIndicator(upArrow)
+    }
+
+    override fun showLoading() {
+        if (isShowLoading) {
+            super.showLoading()
+        }
+
     }
 
 }

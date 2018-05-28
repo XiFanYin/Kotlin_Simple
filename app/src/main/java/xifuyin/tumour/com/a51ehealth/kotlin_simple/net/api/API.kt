@@ -52,5 +52,14 @@ interface API {
     @GET("v4/categories/videoList?")
     fun getCategoryDetailList(@Query("id") id: Long): Observable<ClassifyDetailBean>
 
+
+
+
+    /**
+     * 获取更多的 详情List
+     */
+    @GET
+    fun getMoreCategoryDetailListData(@Url url: String): Observable<ClassifyDetailBean>
+
 }
 

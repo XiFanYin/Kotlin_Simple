@@ -12,13 +12,17 @@ interface ClassifyDetailContact {
 
     interface View : BaseView {
 
-        fun setData(data: ClassifyDetailBean)
+        fun setData(data: ClassifyDetailBean, hasMore: Boolean)
+
+        fun setMoreData(data: ClassifyDetailBean, hasMore: Boolean)
     }
 
 
     interface Persenter : BasePresenter {
 
         fun getData(id: Long)
+
+        fun getLoadMoreData()
 
 
     }

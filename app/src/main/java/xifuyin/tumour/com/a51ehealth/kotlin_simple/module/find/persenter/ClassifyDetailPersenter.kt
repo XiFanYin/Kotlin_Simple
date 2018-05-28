@@ -15,6 +15,7 @@ import xifuyin.tumour.com.a51ehealth.kotlin_simple.net.utils.RxSchedulers
 class ClassifyDetailPersenter(View: ClassifyDetailContact.View) : BasePresenterImpl<ClassifyDetailContact.View>(View), ClassifyDetailContact.Persenter {
 
 
+    var nextPageUrl: String? = null
     /**
      * 获取数据
      */
@@ -31,11 +32,35 @@ class ClassifyDetailPersenter(View: ClassifyDetailContact.View) : BasePresenterI
                     }
 
                     override fun onNext(t: ClassifyDetailBean) {
-                        mView?.setData(t)
+                        nextPageUrl = t.nextPageUrl
+                        mView?.setData(t, nextPageUrl != null)
                     }
 
 
                 })
 
     }
+
+
+    /**
+     * 加载更多
+     */
+    override fun getLoadMoreData() {
+        RetrofitUtil
+                .instance
+                .create(API::class.java)
+                .getMoreCategoryDetailListData(this!!.nextPageUrl!!)
+                .compose(RxSchedulers.io_main())
+                .compose(Loading())
+                .subscribe(object : BaseObserver<ClassifyDetailBean>() {
+                    override fun onSubscribe(d: Disposable) {
+                        addDisposable(d)
+                    }
+                    override fun onNext(t: ClassifyDetailBean) {
+                        nextPageUrl = t.nextPageUrl
+                        mView?.setMoreData(t, nextPageUrl != null)
+                    }
+                })
+    }
+
 }
