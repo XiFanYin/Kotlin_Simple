@@ -353,4 +353,8 @@ public abstract class BaseController extends FrameLayout implements View.OnTouch
 
     ;
 
+    public void setmContextToNull() {
+
+        mContext = null;
+    }
 }
