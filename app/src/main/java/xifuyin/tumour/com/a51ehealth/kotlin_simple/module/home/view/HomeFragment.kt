@@ -150,6 +150,7 @@ class HomeFragment : BaseMvpFragment<HomeContact.Persenter>(), HomeContact.View 
 
     //当显示错误布局后的点击事件回调
     override fun onRetry() {
+        isShowLoading = true
         mPersenter.requestHomeData(1)
     }
 

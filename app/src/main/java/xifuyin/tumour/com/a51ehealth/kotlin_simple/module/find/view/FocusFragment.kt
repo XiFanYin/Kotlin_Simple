@@ -74,6 +74,7 @@ class FocusFragment : BaseMvpFragment<FocusContact.Persenter>(), FocusContact.Vi
 
 
     override fun onRetry() {
+        isShowLoading = true
         mPersenter.getData()
     }
 
