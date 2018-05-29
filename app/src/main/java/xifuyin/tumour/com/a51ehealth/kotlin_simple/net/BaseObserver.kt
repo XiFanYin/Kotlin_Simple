@@ -1,6 +1,7 @@
 package xifuyin.tumour.com.a51ehealth.kotlin_simple.net
 
 
+import android.util.Log
 import io.reactivex.Observer
 import io.reactivex.annotations.NonNull
 
@@ -15,6 +16,8 @@ abstract class BaseObserver<T> : Observer<T> {
     abstract override fun onNext(@NonNull t: T)
 
     override fun onError(@NonNull e: Throwable) {
+
+        Log.e("onError",e.message)
 
     }
 

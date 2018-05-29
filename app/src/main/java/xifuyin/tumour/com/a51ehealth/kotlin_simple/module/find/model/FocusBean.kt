@@ -1,7 +1,6 @@
 package xifuyin.tumour.com.a51ehealth.kotlin_simple.module.find.model
 
 
-
 data class FocusBean(
     val adExist: Boolean,
     val count: Int,
@@ -23,6 +22,22 @@ data class FocusBean(
             val header: Header,
             val itemList: List<Item>
         ) {
+            data class Header(
+                val actionUrl: String,
+                val description: String,
+                val follow: Follow,
+                val icon: String,
+                val iconType: String,
+                val id: Int,
+                val ifPgc: Boolean,
+                val title: String
+            ) {
+                data class Follow(
+                    val followed: Boolean,
+                    val itemId: Int,
+                    val itemType: String
+                )
+            }
             data class Item(
                 val adIndex: Int,
                 val data: Data,
@@ -66,15 +81,6 @@ data class FocusBean(
                         val replyCount: Int,
                         val shareCount: Int
                     )
-                    data class Tag(
-                        val actionUrl: String,
-                        val bgPicture: String,
-                        val headerImage: String,
-                        val id: Int,
-                        val name: String,
-                        val tagRecType: String,
-                        val desc: String
-                    )
                     data class Cover(
                         val blurred: String,
                         val detail: String,
@@ -90,10 +96,18 @@ data class FocusBean(
                     ) {
                         data class Url(
                             val name: String,
-                            val size: Int,
+                            val size: Long,
                             val url: String
                         )
                     }
+                    data class Tag(
+                        val actionUrl: String,
+                        val bgPicture: String,
+                        val headerImage: String,
+                        val id: Int,
+                        val name: String,
+                        val tagRecType: String
+                    )
                     data class Author(
                         val approvedNotReadyVideoCount: Int,
                         val description: String,
@@ -128,22 +142,6 @@ data class FocusBean(
                         val name: String
                     )
                 }
-            }
-            data class Header(
-                val actionUrl: String,
-                val description: String,
-                val follow: Follow,
-                val icon: String,
-                val iconType: String,
-                val id: Int,
-                val ifPgc: Boolean,
-                val title: String
-            ) {
-                data class Follow(
-                    val followed: Boolean,
-                    val itemId: Int,
-                    val itemType: String
-                )
             }
         }
     }

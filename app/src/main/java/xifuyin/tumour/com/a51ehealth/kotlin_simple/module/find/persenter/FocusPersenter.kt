@@ -1,6 +1,7 @@
 package xifuyin.tumour.com.a51ehealth.kotlin_simple.module.find.persenter
 
 
+import android.util.Log
 import io.reactivex.disposables.Disposable
 import xifuyin.tumour.com.a51ehealth.kotlin_simple.base.BasePresenterImpl
 import xifuyin.tumour.com.a51ehealth.kotlin_simple.module.find.model.FocusBean
@@ -49,7 +50,7 @@ class FocusPersenter(mView: FocusContact.View) : BasePresenterImpl<FocusContact.
      * 加载更多数据
      */
     override fun getMoreData() {
-
+        Log.e("rrrrrrrrrrr",nextPageUrl)
         RetrofitUtil
                 .instance
                 .create(API::class.java)
