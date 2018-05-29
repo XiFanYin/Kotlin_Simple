@@ -12,8 +12,7 @@
 -------
 >>第一个问题就是怎么去找系统的资料？这里推荐一个讲解语法的文档：https://hltj.gitbooks.io/kotlin-reference-chinese/content/txt/comparison-to-java.html 我是按照这个文档去敲一些代码片段，熟悉和记住一些语法。
 
->>但是还是有一种抓不住的感觉，量变决定质变这话真是没错，看到学习Kotlin的先行者们一般都会去写一些小型app去练手熟悉语法，奈何没有接口。天无绝人之路，正好遇到一个有关段视频播放的app，https://github.com/git-xuhao/KotlinMvp 而且使用Kotlin去写的，加上我之前封装了一个视频播放器https://github.com/XiFanYin/FakeVideoView ，整体看来还是比较符合练手的需求，就有了这个demo ![图片出错] (https://github.com/XiFanYin/Kotlin_Simple/blob/master/app/src/main/res/mipmap-xxhdpi/iconapp.png
-)
+>>但是还是有一种抓不住的感觉，量变决定质变这话真是没错，看到学习Kotlin的先行者们一般都会去写一些小型app去练手熟悉语法，奈何没有接口。天无绝人之路，正好遇到一个有关段视频播放的app，https://github.com/git-xuhao/KotlinMvp 而且使用Kotlin去写的，加上我之前封装了一个视频播放器https://github.com/XiFanYin/FakeVideoView ，整体看来还是比较符合练手的需求，就有了这个demo ![图片](https://github.com/XiFanYin/Kotlin_Simple/blob/master/app/src/main/res/mipmap-xxhdpi/iconapp.png)
 
 项目截图
 -------
