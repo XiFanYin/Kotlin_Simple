@@ -23,8 +23,7 @@ Google IO 2018宣布了，在过去一年里，有 35% 的专业 Android 开发�
 项目截图
 -------
 
-
-
+![图片](https://github.com/XiFanYin/Kotlin_Simple/blob/master/app/src/main/res/drawable/a.png)![图片](https://github.com/XiFanYin/Kotlin_Simple/blob/master/app/src/main/res/drawable/b.png)![图片](https://github.com/XiFanYin/Kotlin_Simple/blob/master/app/src/main/res/drawable/c.png)
 依赖的库
 -----
 
