@@ -84,7 +84,7 @@ Google IO 2018宣布了，在过去一年里，有 35% 的专业 Android 开发�
 License
 --------
 
-Copyright (c) 2016-present, RxJava Contributors.
+```Copyright (c) 2016-present, RxJava Contributors.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
