@@ -60,11 +60,22 @@ Google IO 2018宣布了，在过去一年里，有 35% 的专业 Android 开发�
 
 * [banner](https://github.com/youth5201314/banner)
 
+友情demo
+------
+
+如对Mvp不熟悉，可以查看Demo:[MVPDemo](https://github.com/XiFanYin/MVPDemo)
+
+如对联网和图片加载不熟悉，可以查看Demo:[View](https://github.com/XiFanYin/View)
+
+如对视频播放器不熟悉，可以查看Demo:[FakeVideoView](https://github.com/XiFanYin/FakeVideoView)
+
 感谢
 -------
+* 感谢以上依赖的第三方库开源作者，使开发变得更加舒服
 
-声明
---------------
+* 特别鸣谢[KotlinMvp](https://github.com/git-xuhao/KotlinMvp)项目的作者，本Demo使用的接口和布局全部来自该项目
+
+
 
 
 
