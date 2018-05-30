@@ -5,9 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/Kotlin_Simple.iml" filepath="$PROJECT_DIR$/.idea/Kotlin_Simple.iml" />
       <module fileurl="file://G:\net\Kotlin_Simple\Kotlin_Simple.iml" filepath="G:\net\Kotlin_Simple\Kotlin_Simple.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://G:\net\Kotlin_Simple\app\app.iml" filepath="G:\net\Kotlin_Simple\app\app.iml" />
       <module fileurl="file://$PROJECT_DIR$/xvideoview/xvideoview.iml" filepath="$PROJECT_DIR$/xvideoview/xvideoview.iml" />
-      <module fileurl="file://G:\net\Kotlin_Simple\xvideoview\xvideoview.iml" filepath="G:\net\Kotlin_Simple\xvideoview\xvideoview.iml" />
     </modules>
   </component>
 </project>

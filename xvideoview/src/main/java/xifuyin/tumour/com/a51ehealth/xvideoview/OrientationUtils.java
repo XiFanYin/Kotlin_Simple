@@ -20,8 +20,10 @@ public class OrientationUtils {
 
     //构造方法
     public OrientationUtils(Context context, IXVideoView mVideoPlayer) {
+        OrientationUtils.this.mVideoPlayer = mVideoPlayer;
+        OrientationUtils.this.context = context;
         //创建对象
-        orientationDetector = new MyOrientationDetector(context, mVideoPlayer);
+        orientationDetector = new MyOrientationDetector();
 
     }
 
@@ -37,11 +39,12 @@ public class OrientationUtils {
      * 关闭旋转监听
      */
     public void disable() {
+
         if (orientationDetector != null) {
             orientationDetector.disable();
             orientationDetector = null;
-            mVideoPlayer = null;
             context = null;
+            mVideoPlayer = null;
         }
 
 
@@ -52,11 +55,8 @@ public class OrientationUtils {
      */
     public class MyOrientationDetector extends OrientationEventListener {
 
-
-        public MyOrientationDetector(Context context, IXVideoView mVideoPlayer) {
+        public MyOrientationDetector() {
             super(context);
-            OrientationUtils.this.mVideoPlayer = mVideoPlayer;
-            OrientationUtils.this.context = context;
         }
 
         @Override

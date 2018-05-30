@@ -412,6 +412,7 @@ public class XVideoView extends FrameLayout implements IXVideoView, TextureView.
         mContainer.removeView(mTextureView);
         mTextureView = null;
         mController.setmContextToNull();//防止传递过来的上下文内存泄漏
+        mController = null;
         Runtime.getRuntime().gc();
     }
 
