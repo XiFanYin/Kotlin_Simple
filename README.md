@@ -40,6 +40,25 @@ Google IO 2018宣布了，在过去一年里，有 35% 的专业 Android 开发�
 
 依赖的库
 -----
+* [RxJava](https://github.com/ReactiveX/RxJava)
+
+* [Retrofit](https://github.com/square/retrofit)
+
+* [RxAndroid](https://github.com/ReactiveX/RxAndroid)
+
+* [RxPermissions](https://github.com/tbruyelle/RxPermissions)
+
+* [BaseRecyclerViewAdapterHelper](https://github.com/CymChad/BaseRecyclerViewAdapterHelper)
+
+* [leakcanary](https://github.com/square/leakcanary)
+
+* [ImmersionBar](https://github.com/gyf-dev/ImmersionBar)
+
+* [glide](https://github.com/bumptech/glide)
+
+* [ijkplayer](https://github.com/Bilibili/ijkplayer)
+
+* [banner](https://github.com/youth5201314/banner)
 
 感谢
 -------
