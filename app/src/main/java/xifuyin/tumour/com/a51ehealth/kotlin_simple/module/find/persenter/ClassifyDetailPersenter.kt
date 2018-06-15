@@ -21,7 +21,6 @@ class ClassifyDetailPersenter(View: ClassifyDetailContact.View) : BasePresenterI
      */
     override fun getData(id: Long) {
         RetrofitUtil
-                .instance
                 .create(API::class.java)
                 .getCategoryDetailList(id)
                 .compose(RxSchedulers.io_main())
@@ -47,7 +46,6 @@ class ClassifyDetailPersenter(View: ClassifyDetailContact.View) : BasePresenterI
      */
     override fun getLoadMoreData() {
         RetrofitUtil
-                .instance
                 .create(API::class.java)
                 .getMoreCategoryDetailListData(this!!.nextPageUrl!!)
                 .compose(RxSchedulers.io_main())

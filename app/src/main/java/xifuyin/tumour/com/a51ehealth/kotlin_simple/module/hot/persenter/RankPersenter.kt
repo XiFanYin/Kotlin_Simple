@@ -17,7 +17,6 @@ class RankPersenter(View: RankContact.View) : BasePresenterImpl<RankContact.View
     override fun getRankData(url: String) {
 
         RetrofitUtil
-                .instance
                 .create(API::class.java)
                 .getRankClassifyData(url)
                 .compose(RxSchedulers.io_main())

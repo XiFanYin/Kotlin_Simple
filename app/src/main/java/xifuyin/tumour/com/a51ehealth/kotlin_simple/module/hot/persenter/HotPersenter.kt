@@ -18,7 +18,6 @@ class HotPersenter(View: HotContact.View) : BasePresenterImpl<HotContact.View>(V
     override fun getTableData() {
 
         RetrofitUtil
-                .instance
                 .create(API::class.java)
                 .getRankList()
                 .compose(RxSchedulers.io_main())

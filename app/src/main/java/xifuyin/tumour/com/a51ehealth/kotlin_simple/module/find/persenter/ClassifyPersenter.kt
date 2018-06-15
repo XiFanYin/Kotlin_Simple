@@ -18,7 +18,6 @@ class ClassifyPersenter(mView :ClassifyContact.View):BasePresenterImpl<ClassifyC
     override fun getData() {
 
         RetrofitUtil
-                .instance
                 .create(API::class.java)
                 .getClassify()
                 .compose(RxSchedulers.io_main())

@@ -26,7 +26,6 @@ class FocusPersenter(mView: FocusContact.View) : BasePresenterImpl<FocusContact.
     override fun getData() {
 
         RetrofitUtil
-                .instance
                 .create(API::class.java)
                 .getFollowInfo()
                 .compose(RxSchedulers.io_main())
@@ -52,7 +51,6 @@ class FocusPersenter(mView: FocusContact.View) : BasePresenterImpl<FocusContact.
     override fun getMoreData() {
         Log.e("rrrrrrrrrrr",nextPageUrl)
         RetrofitUtil
-                .instance
                 .create(API::class.java)
                 .getFollowData(this!!.nextPageUrl!!)
                 .compose(RxSchedulers.io_main())
