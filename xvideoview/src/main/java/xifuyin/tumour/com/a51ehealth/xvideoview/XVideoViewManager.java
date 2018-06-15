@@ -106,8 +106,9 @@ public class XVideoViewManager {
                 mVideoPlayer.setPlayerActivityIsDestroy(true);//否则告诉当前自定义播放器，对应的Activity已经关闭
             }
         }
-        //关闭重力感应工具类
+//        关闭重力感应工具类
         orientationUtils.disable();
+        orientationUtils = null;
     }
 
     /**
