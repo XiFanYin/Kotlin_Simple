@@ -16,7 +16,7 @@ import xifuyin.tumour.com.a51ehealth.kotlin_simple.net.utils.RxSchedulers
 class HomePersenter(view: HomeContact.View) : BasePresenterImpl<HomeContact.View>(view), HomeContact.Persenter {
 
 
-    private var bannerHomeBean: HomeBean? = null
+    private lateinit var bannerHomeBean: HomeBean
     private lateinit var nextPageUrl: String
 
     /**
@@ -25,7 +25,6 @@ class HomePersenter(view: HomeContact.View) : BasePresenterImpl<HomeContact.View
     override fun requestHomeData(num: Int) {
 
         RetrofitUtil
-
                 .create(API::class.java)
                 .getFirstHomeData(num)
                 .flatMap { homeBean ->
@@ -36,7 +35,7 @@ class HomePersenter(view: HomeContact.View) : BasePresenterImpl<HomeContact.View
                     //把过滤掉的数据提升成成员变量
                     bannerHomeBean = homeBean
                     // 重新赋值 Banner 长度
-                    bannerHomeBean!!.issueList[0].count = bannerItemList.size
+                    bannerHomeBean.issueList[0].count = bannerItemList.size
                     //第一次请求的结果是第二次请求的url，再去请求一次，做为列表数据
                     RetrofitUtil.create(API::class.java).getMoreHomeData(homeBean.nextPageUrl)
                 }
@@ -53,9 +52,9 @@ class HomePersenter(view: HomeContact.View) : BasePresenterImpl<HomeContact.View
                         val listItemList = t.issueList[0].itemList
                         listItemList.filter { it -> it.type != "video" }.forEach { it -> listItemList.remove(it) }
                         //赋值过滤后的数据 + banner 数据
-                        bannerHomeBean?.issueList!![0].itemList.addAll(listItemList)
+                        bannerHomeBean.issueList[0].itemList.addAll(listItemList)
                         //把数据传递给View层
-                        mView!!.getData(bannerHomeBean!!)
+                        mView?.getData(bannerHomeBean)
                     }
                 })
 

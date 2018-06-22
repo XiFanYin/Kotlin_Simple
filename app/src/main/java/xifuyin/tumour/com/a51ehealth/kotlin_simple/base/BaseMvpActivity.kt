@@ -1,6 +1,5 @@
 package xifuyin.tumour.com.a51ehealth.kotlin_simple.base
 
-import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import kotlinx.android.synthetic.main.base_layout.*
@@ -13,15 +12,11 @@ import xifuyin.tumour.com.a51ehealth.kotlin_simple.utils.NetWorkUtils
  */
 abstract class BaseMvpActivity <P : BasePresenter>: BaseActivity(), BaseView {
 
-    var dialog: LoadingDialog? = null
-    lateinit var mPersenter: P
+    lateinit  var dialog: LoadingDialog
+
+     val mPersenter: P by lazy { initPersenter() }
 
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-
-        mPersenter = initPersenter()
-        super.onCreate(savedInstanceState)
-    }
     protected abstract fun initPersenter(): P
 
 
@@ -68,14 +63,13 @@ abstract class BaseMvpActivity <P : BasePresenter>: BaseActivity(), BaseView {
 
 
     open override fun dissmassLoading() {
-        dialog?.dismiss()
-        dialog = null
+        dialog.dismiss()
+
     }
 
     open override fun showLoading() {
-        //这里如果是null，直接抛异常
         dialog = LoadingDialog(this)
-        dialog?.setCanceledOnTouchOutside(false)
-        dialog?.show()
+        dialog.setCanceledOnTouchOutside(false)
+        dialog.show()
     }
 }

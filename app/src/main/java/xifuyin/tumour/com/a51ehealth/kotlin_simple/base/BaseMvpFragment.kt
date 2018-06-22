@@ -1,9 +1,8 @@
 package xifuyin.tumour.com.a51ehealth.kotlin_simple.base
 
-import android.os.Bundle
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import kotlinx.android.synthetic.main.base_layout.*
 import xifuyin.tumour.com.a51ehealth.kotlin_simple.R
 import xifuyin.tumour.com.a51ehealth.kotlin_simple.dialog.LoadingDialog
@@ -17,16 +16,9 @@ import xifuyin.tumour.com.a51ehealth.kotlin_simple.utils.NetWorkUtils
  */
 abstract class BaseMvpFragment<P : BasePresenter> : BaseFragment(), BaseView {
 
-
-    lateinit var mPersenter: P
-    var dialog: LoadingDialog? = null
-
-
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        mPersenter = initPersenter()
-
-        return super.onCreateView(inflater, container, savedInstanceState)
-    }
+    lateinit var dialog: LoadingDialog
+    //使用委托属性，每个子类都会去创建一个常量
+    val mPersenter: P by lazy { initPersenter() }
 
 
     protected abstract fun initPersenter(): P
@@ -34,9 +26,7 @@ abstract class BaseMvpFragment<P : BasePresenter> : BaseFragment(), BaseView {
 
     override fun onDestroyView() {
         //在presenter中解绑释放view
-        if (mPersenter != null) {
-            mPersenter.detach()
-        }
+        mPersenter.detach()
         isViewInitiated = false
         isDataRequested = false
         super.onDestroyView()
@@ -81,15 +71,18 @@ abstract class BaseMvpFragment<P : BasePresenter> : BaseFragment(), BaseView {
 
 
     open override fun dissmassLoading() {
-        dialog?.dismiss()
-        dialog = null
+        dialog.dismiss()
+
     }
 
     open override fun showLoading() {
-        //这里如果是null，直接抛异常
-        dialog = LoadingDialog(this!!.activity!!)
-        dialog?.setCanceledOnTouchOutside(false)
-        dialog?.show()
+
+        activity?.let {
+            dialog = LoadingDialog(activity as Context)
+            dialog.setCanceledOnTouchOutside(false)
+            dialog.show()
+        }
+
     }
 
 

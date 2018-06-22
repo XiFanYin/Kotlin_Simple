@@ -12,8 +12,14 @@ interface HomeContact {
 
     interface View : BaseView {
 
+        /**
+         * 传递这次请求数据
+         */
         fun getData(homeBean: HomeBean)
 
+        /**
+         * 传递下次请求数据
+         */
         fun getNextData(homeBean: HomeBean)
 
     }
@@ -25,6 +31,9 @@ interface HomeContact {
          */
         fun requestHomeData(num: Int)
 
+        /**
+         * 请求下页数据
+         */
         fun requestNextHomeData()
 
     }

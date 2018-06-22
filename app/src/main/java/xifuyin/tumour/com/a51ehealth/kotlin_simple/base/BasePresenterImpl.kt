@@ -7,14 +7,11 @@ import io.reactivex.disposables.Disposable
 /**
  * Created by Administrator on 2018/5/22.
  */
-open class BasePresenterImpl<V : BaseView> : BasePresenter {
-
-    var mView: V? = null
+open class BasePresenterImpl<V : BaseView>(mView: V) : BasePresenter {
+    //这里设置为可空，未后期释放view防止内存泄漏做准备
+    var mView: V? = mView
     var mCompositeDisposable: CompositeDisposable? = null
 
-    constructor(mView: V) {
-        this.mView = mView
-    }
 
     override fun detach() {
         unDisposable()//切断流，防止rx内存泄漏，导致空指针
@@ -41,8 +38,8 @@ open class BasePresenterImpl<V : BaseView> : BasePresenter {
     override fun <T> Loading(): ObservableTransformer<T, T> {
         return ObservableTransformer { upstream ->
             upstream
-                    .doOnSubscribe({ mView?.showLoading() })
-                    .doOnError({ mView?.showError() })
+                    .doOnSubscribe { mView?.showLoading() }
+                    .doOnError { mView?.showError() }
                     .doOnComplete { mView?.dissmassErrorView() }
                     .doFinally { mView?.dissmassLoading() }
         }

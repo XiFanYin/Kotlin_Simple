@@ -1,4 +1,4 @@
-package xifuyin.tumour.com.a51ehealth.kotlin_simple.utils
+package BottomNavigationViewUtils
 
 import android.annotation.SuppressLint
 import android.support.design.internal.BottomNavigationItemView
@@ -7,37 +7,30 @@ import android.support.design.widget.BottomNavigationView
 import android.util.Log
 
 /**
- * Created by Administrator on 2018/5/21.
+ * 禁止底部动画
+ * @param view
  */
-object BottomNavigationViewUtils {
+@SuppressLint("RestrictedApi")
+fun disableShiftMode(view: BottomNavigationView) {
+    val menuView = view.getChildAt(0) as BottomNavigationMenuView
+    try {
+        val shiftingMode = menuView.javaClass.getDeclaredField("mShiftingMode")
+        shiftingMode.isAccessible = true
+        shiftingMode.setBoolean(menuView, false)
+        shiftingMode.isAccessible = false
+        for (i in 0 until menuView.childCount) {
+            val item = menuView.getChildAt(i) as BottomNavigationItemView
 
-    /**
-     * 禁止底部动画
-     * @param view
-     */
-
-    @SuppressLint("RestrictedApi")
-    fun disableShiftMode(view: BottomNavigationView) {
-        val menuView = view.getChildAt(0) as BottomNavigationMenuView
-        try {
-            val shiftingMode = menuView.javaClass.getDeclaredField("mShiftingMode")
-            shiftingMode.isAccessible = true
-            shiftingMode.setBoolean(menuView, false)
-            shiftingMode.isAccessible = false
-            for (i in 0 until menuView.childCount) {
-                val item = menuView.getChildAt(i) as BottomNavigationItemView
-
-                item.setShiftingMode(false)
-                // set once again checked value, so view will be updated
-                item.setChecked(item.itemData.isChecked)
-            }
-        } catch (e: NoSuchFieldException) {
-            Log.e("BNVHelper", "Unable to get shift mode field", e)
-        } catch (e: IllegalAccessException) {
-            Log.e("BNVHelper", "Unable to change value of shift mode", e)
+            item.setShiftingMode(false)
+            // set once again checked value, so view will be updated
+            item.setChecked(item.itemData.isChecked)
         }
-
+    } catch (e: NoSuchFieldException) {
+        Log.e("BNVHelper", "Unable to get shift mode field", e)
+    } catch (e: IllegalAccessException) {
+        Log.e("BNVHelper", "Unable to change value of shift mode", e)
     }
 
-
 }
+
+

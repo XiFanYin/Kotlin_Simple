@@ -3,12 +3,10 @@ package xifuyin.tumour.com.a51ehealth.kotlin_simple.base
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.gyf.barlibrary.ImmersionBar
-import xifuyin.tumour.com.a51ehealth.kotlin_simple.R
 
 /**
  * Created by Administrator on 2018/5/21.
@@ -20,7 +18,7 @@ abstract class BaseFragment : Fragment() {
     var isVisibleToUser: Boolean = false//当前页面是否显示在用户面前
     var isViewInitiated: Boolean = false //当前页面是否初始化
     var isDataRequested: Boolean = false //是否已经请求了数据
-    var mImmersionBar: ImmersionBar? = null
+     var mImmersionBar: ImmersionBar?=null
 
     override fun setUserVisibleHint(isVisibleToUser: Boolean) {
         super.setUserVisibleHint(isVisibleToUser)
@@ -29,7 +27,7 @@ abstract class BaseFragment : Fragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater?.inflate(getLayoutId2(), null)
+        return inflater.inflate(getLayoutId2(), null)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -98,7 +96,6 @@ abstract class BaseFragment : Fragment() {
 
     override fun onDestroy() {
         super.onDestroy()
-        if (mImmersionBar != null)
             mImmersionBar?.destroy()
 
     }
