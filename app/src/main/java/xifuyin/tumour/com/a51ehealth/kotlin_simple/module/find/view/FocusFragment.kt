@@ -14,12 +14,11 @@ import xifuyin.tumour.com.a51ehealth.kotlin_simple.module.find.view.adapter.Focu
  */
 class FocusFragment : BaseMvpFragment<FocusContact.Persenter>(), FocusContact.View {
 
-
     lateinit var adapter: FocusAdapter
     var hasMore: Boolean = false
     var isShowLoading: Boolean = true
 
-    //静态方法
+    //伴生对象
     companion object {
         fun getInstance(): FocusFragment {
             val fragment = FocusFragment()
@@ -27,9 +26,9 @@ class FocusFragment : BaseMvpFragment<FocusContact.Persenter>(), FocusContact.Vi
         }
     }
 
-    override fun initPersenter(): FocusContact.Persenter = FocusPersenter(this)
+    override fun initPersenter() = FocusPersenter(this)
 
-    override fun getLayoutId(): Int = R.layout.fragment_focus_layout
+    override fun getLayoutId() = R.layout.fragment_focus_layout
 
 
     override fun initListener() {
@@ -44,34 +43,27 @@ class FocusFragment : BaseMvpFragment<FocusContact.Persenter>(), FocusContact.Vi
         //加载更多
         adapter.setOnLoadMoreListener({
             isShowLoading = false
-            if (hasMore) {
+            if (hasMore) {//如果有更多数据，就去加载更多数据
                 mPersenter.getMoreData()
             }
         }, mRecyclerView)
     }
-
+    //请求第一页数据
     override fun getSerivceData() {
         mPersenter.getData()
-
     }
 
     override fun setData(data: FocusBean, hasMore: Boolean) {
-        this.hasMore = hasMore
-        adapter.setNewData(data.itemList)
+        this.hasMore = hasMore//是否有更多数据
+        adapter.setNewData(data.itemList)//设置请求到的数据
     }
 
     override fun setMoreData(data: FocusBean, hasMore: Boolean) {
         this.hasMore = hasMore
-        adapter.addData(data.itemList)
-        if (hasMore) {
-            adapter.loadMoreComplete()
-        } else {
-            adapter.loadMoreEnd()
-
-        }
+        adapter.addData(data.itemList)//添加更多数据
+        if (hasMore) adapter.loadMoreComplete() else adapter.loadMoreEnd()//如果有更多就显示加载完成，如果没有更多，显示没有更多的UI
 
     }
-
 
     override fun onRetry() {
         isShowLoading = true

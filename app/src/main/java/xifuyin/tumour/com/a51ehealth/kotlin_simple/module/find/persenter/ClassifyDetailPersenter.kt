@@ -47,7 +47,7 @@ class ClassifyDetailPersenter(View: ClassifyDetailContact.View) : BasePresenterI
     override fun getLoadMoreData() {
         RetrofitUtil
                 .create(API::class.java)
-                .getMoreCategoryDetailListData(this!!.nextPageUrl!!)
+                .getMoreCategoryDetailListData(nextPageUrl!!)
                 .compose(RxSchedulers.io_main())
                 .compose(Loading())
                 .subscribe(object : BaseObserver<ClassifyDetailBean>() {

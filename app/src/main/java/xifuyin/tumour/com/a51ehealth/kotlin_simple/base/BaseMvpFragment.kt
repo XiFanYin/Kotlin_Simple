@@ -6,7 +6,6 @@ import android.view.View
 import kotlinx.android.synthetic.main.base_layout.*
 import xifuyin.tumour.com.a51ehealth.kotlin_simple.R
 import xifuyin.tumour.com.a51ehealth.kotlin_simple.dialog.LoadingDialog
-import xifuyin.tumour.com.a51ehealth.kotlin_simple.utils.NetWorkUtils
 
 /**
  * Created by Administrator on 2018/5/21.

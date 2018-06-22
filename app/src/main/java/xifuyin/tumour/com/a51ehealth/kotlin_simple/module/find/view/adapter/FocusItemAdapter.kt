@@ -14,6 +14,7 @@ class FocusItemAdapter(data: List<FocusBean.Item.Data.Item>, layout: Int) : Base
     lateinit var str: String
 
     override fun convert(helper: BaseViewHolder, item: FocusBean.Item.Data.Item) {
+        //设置子条目的Ui
         helper.setText(R.id.tv_title, item.data.title)
         str = "#"
         for (tag in item.data.tags) {

@@ -19,7 +19,6 @@ class FocusPersenter(mView: FocusContact.View) : BasePresenterImpl<FocusContact.
 
     var nextPageUrl: String? = null
 
-
     /**
      * 请求关注的数据
      */
@@ -49,10 +48,10 @@ class FocusPersenter(mView: FocusContact.View) : BasePresenterImpl<FocusContact.
      * 加载更多数据
      */
     override fun getMoreData() {
-        Log.e("rrrrrrrrrrr",nextPageUrl)
+
         RetrofitUtil
                 .create(API::class.java)
-                .getFollowData(this!!.nextPageUrl!!)
+                .getFollowData(nextPageUrl!!)
                 .compose(RxSchedulers.io_main())
                 .compose(Loading())
                 .subscribe(object : BaseObserver<FocusBean>() {
@@ -61,7 +60,7 @@ class FocusPersenter(mView: FocusContact.View) : BasePresenterImpl<FocusContact.
                     }
 
                     override fun onNext(t: FocusBean) {
-                        nextPageUrl = t?.nextPageUrl
+                        nextPageUrl = t.nextPageUrl
                         mView?.setMoreData(t, nextPageUrl != null)
 
                     }

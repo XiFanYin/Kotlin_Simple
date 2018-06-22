@@ -17,7 +17,7 @@ class ClassifyFragment : BaseMvpFragment<ClassifyContact.Persenter>(), ClassifyC
 
     lateinit var adapter: ClassifyAdapter
 
-    //静态方法
+    //伴生对象
     companion object {
         fun getInstance(): ClassifyFragment {
             val fragment = ClassifyFragment()
@@ -25,9 +25,9 @@ class ClassifyFragment : BaseMvpFragment<ClassifyContact.Persenter>(), ClassifyC
         }
     }
 
-    override fun getLayoutId(): Int = R.layout.fragment_classify_layout
+    override fun getLayoutId() = R.layout.fragment_classify_layout
 
-    override fun initPersenter(): ClassifyContact.Persenter = ClassifyPersenter(this)
+    override fun initPersenter()= ClassifyPersenter(this)
 
 
     override fun initListener() {
@@ -51,7 +51,6 @@ class ClassifyFragment : BaseMvpFragment<ClassifyContact.Persenter>(), ClassifyC
 
     override fun getData(mData: ArrayList<ClassifyBean>) {
         adapter.addData(mData)
-
 
     }
 

@@ -6,7 +6,6 @@ import android.support.v4.app.FragmentPagerAdapter
 import kotlinx.android.synthetic.main.fragment_find_layout.*
 import xifuyin.tumour.com.a51ehealth.kotlin_simple.R
 import xifuyin.tumour.com.a51ehealth.kotlin_simple.base.BaseFragment
-import xifuyin.tumour.com.a51ehealth.kotlin_simple.utils.TableLayoutUtils
 
 
 /**
@@ -15,7 +14,7 @@ import xifuyin.tumour.com.a51ehealth.kotlin_simple.utils.TableLayoutUtils
 
 class FindFragment : BaseFragment() {
 
-    //静态方法
+    //伴生对象
     companion object {
         fun getInstance(): FindFragment {
             val fragment = FindFragment()
@@ -25,7 +24,7 @@ class FindFragment : BaseFragment() {
     }
 
 
-    override fun getLayoutId(): Int = R.layout.fragment_find_layout
+    override fun getLayoutId() = R.layout.fragment_find_layout
 
     override fun initListener() {
 
@@ -38,15 +37,16 @@ class FindFragment : BaseFragment() {
 
 
     override fun getSerivceData() {
-        val tabList = ArrayList<String>()
-        var fragments = ArrayList<Fragment>()
-        fragments.add(FocusFragment.getInstance())
-        fragments.add(ClassifyFragment.getInstance())
-        tabList.add("关注")
-        tabList.add("分类")
-        var adapter = MyAdapter(fragments, tabList, childFragmentManager)
+        //创建数据
+        val tabList = arrayListOf("关注", "分类")
+        val fragments = arrayListOf<Fragment>(FocusFragment.getInstance(), ClassifyFragment.getInstance())
+        //创建adapter
+        val adapter = MyAdapter(fragments, tabList, childFragmentManager)
+        //设置adapter
         mViewPager.adapter = adapter
+        //关联tablelayout
         mTabLayout.setupWithViewPager(mViewPager)
+        //设置tablelayout的下划线长度
         mTabLayout.post({ TableLayoutUtils.setIndicator(mTabLayout, 60, 60) })
     }
 
