@@ -15,25 +15,25 @@ Google IO 2018宣布了，在过去一年里，有 35% 的专业 Android 开发�
 
 还是有一种抓不住的感觉，这里安利一系列关于Kotlin基础的文章：
 
-*[Kotlin基础一](https://juejin.im/post/5b19062651882513ea5cb973)
+* [Kotlin基础一](https://juejin.im/post/5b19062651882513ea5cb973)
 
-*[Kotlin基础二](https://juejin.im/post/5b1cddf55188251374789fdc)
+* [Kotlin基础二](https://juejin.im/post/5b1cddf55188251374789fdc)
 
-*[Kotlin基础三](https://juejin.im/post/5b1e4b176fb9a01e3542fda8)
+* [Kotlin基础三](https://juejin.im/post/5b1e4b176fb9a01e3542fda8)
 
-*[Kotlin基础四](https://juejin.im/post/5b20689ef265da6e326c5d07)
+* [Kotlin基础四](https://juejin.im/post/5b20689ef265da6e326c5d07)
 
-*[Kotlin基础五](https://juejin.im/post/5b20d13ef265da6e1804d4b8)
+* [Kotlin基础五](https://juejin.im/post/5b20d13ef265da6e1804d4b8)
 
-*[Kotlin基础六](https://juejin.im/post/5b230c73f265da598d17d61f)
+* [Kotlin基础六](https://juejin.im/post/5b230c73f265da598d17d61f)
 
-*[Kotlin基础七](https://juejin.im/post/5b25eaeb518825749c1c1a83)
+* [Kotlin基础七](https://juejin.im/post/5b25eaeb518825749c1c1a83)
 
-*[Kotlin基础八](https://juejin.im/post/5b285f0d6fb9a00e3970527a)
+* [Kotlin基础八](https://juejin.im/post/5b285f0d6fb9a00e3970527a)
 
-*[Kotlin基础九](https://juejin.im/post/5b29b0b2e51d4558957dc3bb)
+* [Kotlin基础九](https://juejin.im/post/5b29b0b2e51d4558957dc3bb)
 
-*[Kotlin基础十](https://juejin.im/post/5b2afe716fb9a00e406a914d)
+* [Kotlin基础十](https://juejin.im/post/5b2afe716fb9a00e406a914d)
 
 看到学习Kotlin的先行者们一般都会去写一些小型app去练手熟悉语法，奈何没有接口。天无绝人之路，正好遇到一个有关段视频播放的[KotlinMvp](https://github.com/git-xuhao/KotlinMvp )，而且使用Kotlin去写的，加上我之前封装了一个[视频播放器](https://github.com/XiFanYin/FakeVideoView )，整体看来还是比较符合练手的需求，就有了这个练手项目: 
 
