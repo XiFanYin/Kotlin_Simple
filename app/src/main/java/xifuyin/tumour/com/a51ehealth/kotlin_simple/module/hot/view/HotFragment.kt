@@ -9,13 +9,12 @@ import xifuyin.tumour.com.a51ehealth.kotlin_simple.base.BaseMvpFragment
 import xifuyin.tumour.com.a51ehealth.kotlin_simple.module.hot.model.TabInfoBean
 import xifuyin.tumour.com.a51ehealth.kotlin_simple.module.hot.persenter.HotPersenter
 import xifuyin.tumour.com.a51ehealth.kotlin_simple.module.hot.persenter.contact.HotContact
-import xifuyin.tumour.com.a51ehealth.kotlin_simple.utils.TableLayoutUtils
 
 /**
  * Created by Administrator on 2018/5/21.
  */
 class HotFragment : BaseMvpFragment<HotContact.Persenter>(), HotContact.View {
-    //静态方法
+    //伴生对象
     companion object {
         fun getInstance(): HotFragment {
             val fragment = HotFragment()
@@ -23,7 +22,7 @@ class HotFragment : BaseMvpFragment<HotContact.Persenter>(), HotContact.View {
         }
     }
 
-    override fun initPersenter(): HotContact.Persenter = HotPersenter(this)
+    override fun initPersenter()= HotPersenter(this)
 
 
     override fun initImmersionBar() {
@@ -32,7 +31,7 @@ class HotFragment : BaseMvpFragment<HotContact.Persenter>(), HotContact.View {
 
     }
 
-    override fun getLayoutId(): Int = R.layout.fragment_hot_layout
+    override fun getLayoutId() = R.layout.fragment_hot_layout
 
 
     override fun initListener() {
@@ -45,15 +44,19 @@ class HotFragment : BaseMvpFragment<HotContact.Persenter>(), HotContact.View {
     }
 
     override fun setTableData(data: TabInfoBean) {
-
+        //使用集合操作符，重构数据
         val tabList = ArrayList<String>()
         var fragments = ArrayList<Fragment>()
         data.tabInfo.tabList.mapTo(tabList) { it.name }
         data.tabInfo.tabList.mapTo(fragments) { RankFragment.getInstance(it.apiUrl) }
+        //创建设置适配器
         var adapter = MyAdapter(fragments, tabList, childFragmentManager)
         mViewPager.adapter = adapter
+        //关联tablelayout
         mTabLayout.setupWithViewPager(mViewPager)
+        //设置预加载数量
         mViewPager.offscreenPageLimit = tabList.size - 1
+        //设置table的下划线长度
         mTabLayout.post({ TableLayoutUtils.setIndicator(mTabLayout, 60, 60) })
 
 

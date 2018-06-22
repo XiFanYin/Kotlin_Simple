@@ -19,16 +19,15 @@ import xifuyin.tumour.com.a51ehealth.kotlin_simple.module.hot.view.adapter.RankA
 class RankFragment : BaseMvpFragment<RankPersenter>(), RankContact.View {
 
 
-    override fun initPersenter(): RankPersenter = RankPersenter(this)
-
     //传递过来接口的URL
     var url: String? = null
-    var adapter: RankAdapter? = null
+    lateinit var adapter: RankAdapter
 
-    //静态方法
+    //伴生对象
     companion object {
         fun getInstance(url: String): RankFragment {
             val fragment = RankFragment()
+            //传递参数
             val bundle = Bundle()
             fragment.arguments = bundle
             bundle.putString("apiUrl", url)
@@ -38,35 +37,41 @@ class RankFragment : BaseMvpFragment<RankPersenter>(), RankContact.View {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        //获取参数
         url = arguments?.getString("apiUrl")
     }
 
-    override fun getLayoutId(): Int = R.layout.fragment_rank_layout
+    override fun initPersenter() = RankPersenter(this)
+
+
+    override fun getLayoutId() = R.layout.fragment_rank_layout
 
     override fun initListener() {
+        //设置适配器
         mRecyclerView.setHasFixedSize(true)
         mRecyclerView.layoutManager = LinearLayoutManager(activity)
         adapter = RankAdapter(null, R.layout.item_rank_layout)
         mRecyclerView.adapter = adapter
         //条目点击事件
-        adapter?.setOnItemClickListener { _, _, position ->
+        adapter.setOnItemClickListener { _, _, position ->
             var intent = Intent(activity, VideoDetailActivity::class.java)
-            intent.putExtra("video_url", this.adapter?.data?.get(position)?.data?.playUrl)
-            intent.putExtra("video_title", this.adapter?.data?.get(position)?.data?.title)
+            intent.putExtra("video_url", this.adapter.data.get(position).data.playUrl)
+            intent.putExtra("video_title", this.adapter.data.get(position).data.title)
             startActivity(intent)
         }
     }
 
     override fun getSerivceData() {
-        mPersenter.getRankData(this?.url!!)
+        url?.let { it->mPersenter.getRankData(it) }
+
     }
 
     override fun setRankData(data: RankBean) {
-        adapter?.setNewData(data.itemList)
+        adapter.setNewData(data.itemList)
     }
 
     override fun onRetry() {
-        mPersenter.getRankData(this?.url!!)
+        url?.let { it->mPersenter.getRankData(it) }
     }
 
 }
