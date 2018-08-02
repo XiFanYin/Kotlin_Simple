@@ -94,6 +94,14 @@ public class XVideoViewManager {
 
     }
 
+
+    public void onPause(){
+        //如果播放器处于暂停状态，，让播放器从新播放视频
+        if (mVideoPlayer != null && mVideoPlayer.isPlaying()) {
+            mVideoPlayer.Pause();
+        }
+    }
+
     /**
      * 如果只是退出播放器，而不是退出app的时候，只有再不是小屏的时候才释放掉播放器
      */

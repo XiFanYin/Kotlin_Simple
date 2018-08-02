@@ -89,7 +89,6 @@ public class QQBrowserController extends BaseController implements View.OnClickL
         //中心按钮的点击事件
         center_start.setOnClickListener(this);
         back.setOnClickListener(this);
-        share.setOnClickListener(this);
         tiny_window.setOnClickListener(this);
         menu.setOnClickListener(this);
         lock.setOnClickListener(this);
@@ -119,11 +118,7 @@ public class QQBrowserController extends BaseController implements View.OnClickL
 
             xVideoView.exitFullScreen();
 
-        } else if (v == share) {//分享按钮被点击
-
-            Toast.makeText(mContext, "分享按钮被点击", Toast.LENGTH_SHORT).show();
-
-        } else if (v == tiny_window) {//小屏按钮被点击
+        }  else if (v == tiny_window) {//小屏按钮被点击
 
             if (xVideoView.isFullScreen()) {
                 xVideoView.exitFullScreen();
