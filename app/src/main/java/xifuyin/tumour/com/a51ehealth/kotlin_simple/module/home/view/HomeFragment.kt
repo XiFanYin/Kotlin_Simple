@@ -28,6 +28,7 @@ class HomeFragment : BaseMvpFragment<HomeContact.Persenter>(), HomeContact.View 
     var playurl = ArrayList<String>()
     var imageUrl = ArrayList<String>()
     var titles = ArrayList<String>()
+    var description = ArrayList<String>()
 
     //伴生对象
     companion object {
@@ -97,6 +98,8 @@ class HomeFragment : BaseMvpFragment<HomeContact.Persenter>(), HomeContact.View 
             var intent = Intent(activity, VideoDetailActivity::class.java)
             intent.putExtra("video_url", this.adapter.data.get(position).data.playUrl)
             intent.putExtra("video_title", this.adapter.data.get(position).data.title)
+            intent.putExtra("image_url", this.adapter.data.get(position).data.cover.detail)
+            intent.putExtra("description", this.adapter.data.get(position).data.description)
             startActivity(intent)
 
         })
@@ -105,6 +108,8 @@ class HomeFragment : BaseMvpFragment<HomeContact.Persenter>(), HomeContact.View 
             var intent = Intent(activity, VideoDetailActivity::class.java)
             intent.putExtra("video_url", playurl.get(position))
             intent.putExtra("video_title", titles.get(position))
+            intent.putExtra("image_url", imageUrl.get(position))
+            intent.putExtra("description", description.get(position))
             startActivity(intent)
         })
         //搜索的点击事件
@@ -138,6 +143,7 @@ class HomeFragment : BaseMvpFragment<HomeContact.Persenter>(), HomeContact.View 
             titles.add(lists.data.title)
             imageUrl.add(lists.data.cover.detail)
             playurl.add(lists.data.playUrl)
+            description.add(lists.data.description)
         }
         //设置轮播图的一些UI
         banner.setBannerStyle(BannerConfig.CIRCLE_INDICATOR_TITLE_INSIDE)
