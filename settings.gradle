@@ -1,1 +1,1 @@
-include ':app', ':xvideoview'
+include ':app', ':xvideoview', ':share'

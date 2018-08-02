@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Kotlin_Simple.iml" filepath="$PROJECT_DIR$/Kotlin_Simple.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/share/share.iml" filepath="$PROJECT_DIR$/share/share.iml" />
       <module fileurl="file://$PROJECT_DIR$/xvideoview/xvideoview.iml" filepath="$PROJECT_DIR$/xvideoview/xvideoview.iml" />
     </modules>
   </component>

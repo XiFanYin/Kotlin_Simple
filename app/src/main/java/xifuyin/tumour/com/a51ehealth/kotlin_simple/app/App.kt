@@ -2,6 +2,8 @@ package xifuyin.tumour.com.a51ehealth.kotlin_simple.app
 
 import android.app.Application
 import com.squareup.leakcanary.LeakCanary
+import com.umeng.commonsdk.UMConfigure
+import com.umeng.socialize.PlatformConfig
 
 /**
  * Created by Administrator on 2018/5/21.
@@ -16,6 +18,7 @@ class App : Application() {
 
     override fun onCreate() {
         super.onCreate()
+        initUmeng()
         application = this
         if (LeakCanary.isInAnalyzerProcess(this)) {
             return;
@@ -23,6 +26,16 @@ class App : Application() {
         LeakCanary.install(this);
 
 
+    }
+
+    //初始化友盟
+    private fun initUmeng() {
+
+        UMConfigure.init(this, "5b61764ef43e483fda000131", "umeng", UMConfigure.DEVICE_TYPE_PHONE, "")
+        /*这些也需要去替换 **/
+        PlatformConfig.setWeixin("wx6c609010c5101349", "c896637e1b9e97756f3ca156b64f7aa1")
+        PlatformConfig.setQQZone("1107474610", "frEHNKoKEFjtZkZK")
+        UMConfigure.setLogEnabled(true);
     }
 
 

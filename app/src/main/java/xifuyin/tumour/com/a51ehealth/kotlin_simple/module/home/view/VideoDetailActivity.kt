@@ -2,21 +2,16 @@ package xifuyin.tumour.com.a51ehealth.kotlin_simple.module.home.view
 
 import android.content.Intent
 import android.content.pm.ActivityInfo
-import android.util.Log
-import android.widget.Toast
 import com.umeng.socialize.ShareAction
 import com.umeng.socialize.UMShareAPI
-import com.umeng.socialize.UMShareListener
 import com.umeng.socialize.bean.SHARE_MEDIA
+import com.umeng.socialize.media.UMImage
+import com.umeng.socialize.media.UMVideo
 import kotlinx.android.synthetic.main.activity_vidio_detail_layout.*
-import xifuyin.tumour.com.a51ehealth.kotlin_simple.MainActivity
 import xifuyin.tumour.com.a51ehealth.kotlin_simple.R
 import xifuyin.tumour.com.a51ehealth.kotlin_simple.base.BaseActivity
 import xifuyin.tumour.com.a51ehealth.xvideoview.QQBrowserController
 import xifuyin.tumour.com.a51ehealth.xvideoview.XVideoViewManager
-import com.umeng.socialize.media.UMVideo
-import com.umeng.socialize.editorpage.ShareActivity
-import com.umeng.socialize.media.UMImage
 
 
 /**
