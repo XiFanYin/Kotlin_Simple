@@ -1,11 +1,22 @@
 package xifuyin.tumour.com.a51ehealth.kotlin_simple.module.home.view
 
+import android.content.Intent
 import android.content.pm.ActivityInfo
+import android.util.Log
+import android.widget.Toast
+import com.umeng.socialize.ShareAction
+import com.umeng.socialize.UMShareAPI
+import com.umeng.socialize.UMShareListener
+import com.umeng.socialize.bean.SHARE_MEDIA
 import kotlinx.android.synthetic.main.activity_vidio_detail_layout.*
+import xifuyin.tumour.com.a51ehealth.kotlin_simple.MainActivity
 import xifuyin.tumour.com.a51ehealth.kotlin_simple.R
 import xifuyin.tumour.com.a51ehealth.kotlin_simple.base.BaseActivity
 import xifuyin.tumour.com.a51ehealth.xvideoview.QQBrowserController
 import xifuyin.tumour.com.a51ehealth.xvideoview.XVideoViewManager
+import com.umeng.socialize.media.UMVideo
+import com.umeng.socialize.editorpage.ShareActivity
+import com.umeng.socialize.media.UMImage
 
 
 /**
@@ -22,8 +33,29 @@ class VideoDetailActivity : BaseActivity() {
     override fun initListener() {
         var playurl = intent.getStringExtra("video_url")
         var playtitle = intent.getStringExtra("video_title")
+        var image_url = intent.getStringExtra("image_url")
+        var description = intent.getStringExtra("description")
 
         val controller = QQBrowserController(this)//初始化了一个布局，设置了点击事件和拖动事件
+        //分享逻辑
+        controller.share.setOnClickListener {
+            //视频播放地址
+            val video = UMVideo(playurl)
+            //视频的标题
+            video.title = playtitle
+            //视频的缩略图
+            val image = UMImage(this, image_url)
+            video.setThumb(image)
+            //视频的描述
+            video.description = description
+
+            ShareAction(this)
+                    .withText("hello")
+                    .withMedia(video)
+                    .setDisplayList(SHARE_MEDIA.QQ, SHARE_MEDIA.WEIXIN)
+                    .open()
+        }
+
         controller.setTitle(playtitle)//设置视频名字，全屏的时候显示
         xVideoView.setController(controller)//让自定义播放器持有控制器对象，同时让控制器持有播放器对象，同时把控制器添加到自定义控件中
         xVideoView.setUrl(playurl)
@@ -36,9 +68,21 @@ class VideoDetailActivity : BaseActivity() {
         XVideoViewManager.getInstance().onResume()
     }
 
+    override fun onPause() {
+        super.onPause()
+        XVideoViewManager.getInstance().onPause()
+    }
+
+
     override fun onDestroy() {
         super.onDestroy()
         XVideoViewManager.getInstance().onDestroy()
+    }
+
+    //需要在使用QQ分享或者授权的Activity中添加：
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        UMShareAPI.get(this).onActivityResult(requestCode, resultCode, data);
     }
 
 }

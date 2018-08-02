@@ -37,6 +37,8 @@ class FocusAdapter(data: List<FocusBean.Item>?, layout: Int) : BaseQuickAdapter<
             val intent = Intent(mContext, VideoDetailActivity::class.java)
             intent.putExtra("video_url", item.data.itemList.get(position).data.playUrl)
             intent.putExtra("video_title", item.data.itemList.get(position).data.title)
+            intent.putExtra("image_url", item.data.itemList.get(position).data.cover.detail)
+            intent.putExtra("description", item.data.itemList.get(position).data.description)
             (mContext as Activity).startActivity(intent)
         }
     }

@@ -89,6 +89,8 @@ class ClassifyDetailActivity : BaseMvpActivity<ClassifyDetailPersenter>(), Class
             var intent = Intent(this, VideoDetailActivity::class.java)
             intent.putExtra("video_url", this.adapter.data.get(position).data.playUrl)
             intent.putExtra("video_title", this.adapter.data.get(position).data.title)
+            intent.putExtra("image_url", this.adapter.data.get(position).data.cover.detail)
+            intent.putExtra("description", this.adapter.data.get(position).data.description)
             startActivity(intent)
         })
 
