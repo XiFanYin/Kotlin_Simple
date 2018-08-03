@@ -52,7 +52,6 @@ class VideoDetailActivity : BaseActivity() {
             config.setTitleVisibility(false)
             config.setShareboardBackgroundColor(Color.parseColor("#00000000"))
             ShareAction(this)
-                    .withText("hello")
                     .withMedia(video)
                     .setDisplayList(SHARE_MEDIA.QQ, SHARE_MEDIA.WEIXIN)
                     .open(config)
