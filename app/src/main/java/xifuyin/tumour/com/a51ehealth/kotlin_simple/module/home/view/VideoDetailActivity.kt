@@ -35,7 +35,8 @@ class VideoDetailActivity : BaseActivity() {
         var description = intent.getStringExtra("description")
 
         val controller = QQBrowserController(this)//初始化了一个布局，设置了点击事件和拖动事件
-        //分享逻辑
+
+        //分享逻辑：这里没有判断是否安装，最好在正式项目中封装成工具类，以后使用方便
         controller.share.setOnClickListener {
             //视频播放地址
             val video = UMVideo(playurl)
