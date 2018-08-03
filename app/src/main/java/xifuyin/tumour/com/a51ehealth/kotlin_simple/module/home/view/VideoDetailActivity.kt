@@ -2,8 +2,10 @@ package xifuyin.tumour.com.a51ehealth.kotlin_simple.module.home.view
 
 import android.content.Intent
 import android.content.pm.ActivityInfo
+import android.graphics.Color
 import com.umeng.socialize.ShareAction
 import com.umeng.socialize.UMShareAPI
+import com.umeng.socialize.UMShareListener
 import com.umeng.socialize.bean.SHARE_MEDIA
 import com.umeng.socialize.media.UMImage
 import com.umeng.socialize.media.UMVideo
@@ -12,6 +14,7 @@ import xifuyin.tumour.com.a51ehealth.kotlin_simple.R
 import xifuyin.tumour.com.a51ehealth.kotlin_simple.base.BaseActivity
 import xifuyin.tumour.com.a51ehealth.xvideoview.QQBrowserController
 import xifuyin.tumour.com.a51ehealth.xvideoview.XVideoViewManager
+import com.umeng.socialize.shareboard.ShareBoardConfig
 
 
 /**
@@ -43,12 +46,16 @@ class VideoDetailActivity : BaseActivity() {
             video.setThumb(image)
             //视频的描述
             video.description = description
-
+            //新建ShareBoardConfig
+            val config = ShareBoardConfig()
+            config.setIndicatorVisibility(false)
+            config.setTitleVisibility(false)
+            config.setShareboardBackgroundColor(Color.parseColor("#00000000"))
             ShareAction(this)
                     .withText("hello")
                     .withMedia(video)
                     .setDisplayList(SHARE_MEDIA.QQ, SHARE_MEDIA.WEIXIN)
-                    .open()
+                    .open(config)
         }
 
         controller.setTitle(playtitle)//设置视频名字，全屏的时候显示
@@ -77,7 +84,7 @@ class VideoDetailActivity : BaseActivity() {
     //需要在使用QQ分享或者授权的Activity中添加：
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        UMShareAPI.get(this).onActivityResult(requestCode, resultCode, data);
+        UMShareAPI.get(this).onActivityResult(requestCode, resultCode, data)
     }
 
 }
