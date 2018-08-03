@@ -55,6 +55,12 @@ class MeFragment : BaseFragment() {
             var intent = Intent(activity,AboutAuthorActivity::class.java)
             startActivity(intent)
         })
+        //测试第三方登录
+        image.setOnClickListener {
+            var intent = Intent(activity,TestThereLoginActivity::class.java)
+            startActivity(intent)
+
+        }
     }
 
     override fun initImmersionBar() {
