@@ -3,6 +3,7 @@ package xifuyin.tumour.com.a51ehealth.kotlin_simple.module.home.view
 import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.graphics.Color
+import android.util.Log
 import com.umeng.socialize.ShareAction
 import com.umeng.socialize.UMShareAPI
 import com.umeng.socialize.UMShareListener
