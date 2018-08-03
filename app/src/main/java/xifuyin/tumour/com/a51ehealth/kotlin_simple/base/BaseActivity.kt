@@ -6,6 +6,9 @@ import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import com.gyf.barlibrary.ImmersionBar
+import com.umeng.analytics.MobclickAgent
+
+
 
 /**
  * Created by Administrator on 2018/5/21.
@@ -32,6 +35,16 @@ abstract class BaseActivity : AppCompatActivity() {
         initListener2()
         //获取服务器数据
         getSerivceData()
+    }
+    //友盟统计的代码
+    public override fun onResume() {
+        super.onResume()
+        MobclickAgent.onResume(this)
+    }
+    //友盟统计的代码
+    public override fun onPause() {
+        super.onPause()
+        MobclickAgent.onPause(this)
     }
 
 
