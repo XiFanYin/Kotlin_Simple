@@ -1,6 +1,7 @@
 package xifuyin.tumour.com.a51ehealth.kotlin_simple
 
 import android.Manifest
+import android.Manifest.permission.WRITE_EXTERNAL_STORAGE
 import android.content.Intent
 import android.graphics.Typeface
 import android.view.animation.AlphaAnimation
@@ -25,6 +26,7 @@ class SplashActivity : BaseActivity() {
         descTypeFace = Typeface.createFromAsset(App.application.assets, "fonts/FZLanTingHeiS-L-GB-Regular.TTF")
         alphaAnimation = AlphaAnimation(0.3f, 1.0f)
     }
+
     //重写设置布局的方法
     override fun getLayout(): Int = R.layout.activity_splash_layout
 
@@ -51,7 +53,9 @@ class SplashActivity : BaseActivity() {
         //请求权限
         RxPermissions(act)
                 .request(Manifest.permission.READ_EXTERNAL_STORAGE,
-                        Manifest.permission.READ_PHONE_STATE)
+                        Manifest.permission.READ_PHONE_STATE,
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE
+                )
                 .subscribe({ granted ->
                     if (granted) {
                         //让根布局去开始这个动画
