@@ -36,6 +36,7 @@ abstract class BaseActivity : AppCompatActivity() {
         //获取服务器数据
         getSerivceData()
     }
+
     //友盟统计的代码
     public override fun onResume() {
         super.onResume()
