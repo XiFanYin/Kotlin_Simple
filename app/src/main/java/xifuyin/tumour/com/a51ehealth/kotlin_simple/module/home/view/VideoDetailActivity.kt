@@ -71,7 +71,7 @@ class VideoDetailActivity : BaseActivity() {
                             config.setShareboardBackgroundColor(Color.parseColor("#00000000"))
                             ShareAction(this)
                                     .withMedia(video)
-                                    .setDisplayList(SHARE_MEDIA.QQ, SHARE_MEDIA.WEIXIN)
+                                    .setDisplayList(SHARE_MEDIA.QQ, SHARE_MEDIA.QZONE,SHARE_MEDIA.WEIXIN,SHARE_MEDIA.WEIXIN_CIRCLE)
                                     .open(config)
                         }
                     })
@@ -107,5 +107,7 @@ class VideoDetailActivity : BaseActivity() {
         super.onActivityResult(requestCode, resultCode, data)
         UMShareAPI.get(this).onActivityResult(requestCode, resultCode, data)
     }
+
+
 
 }

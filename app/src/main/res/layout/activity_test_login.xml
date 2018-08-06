@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
 
     <Button
@@ -10,4 +11,9 @@
         android:layout_height="wrap_content"
         android:text="测试第三方登录" />
 
-</android.support.constraint.ConstraintLayout>
+    <Button
+        android:id="@+id/test_carch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="测试崩溃" />
+</LinearLayout>

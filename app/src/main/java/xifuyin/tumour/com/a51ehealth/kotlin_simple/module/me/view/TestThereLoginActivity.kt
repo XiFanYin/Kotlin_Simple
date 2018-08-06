@@ -2,6 +2,7 @@ package xifuyin.tumour.com.a51ehealth.kotlin_simple.module.me.view
 
 import android.content.Intent
 import android.util.Log
+import android.widget.TextView
 import com.umeng.socialize.UMAuthListener
 import com.umeng.socialize.UMShareAPI
 import com.umeng.socialize.bean.SHARE_MEDIA
@@ -15,6 +16,7 @@ import xifuyin.tumour.com.a51ehealth.kotlin_simple.base.BaseActivity
 
 class TestThereLoginActivity : BaseActivity() {
 
+    var tv: TextView? = null
 
     override fun getLayout() = R.layout.activity_test_login
 
@@ -24,6 +26,7 @@ class TestThereLoginActivity : BaseActivity() {
         test_login.setOnClickListener {
             UMShareAPI.get(this).getPlatformInfo(this, SHARE_MEDIA.QQ, object : UMAuthListener {
                 override fun onComplete(p0: SHARE_MEDIA?, p1: Int, p2: MutableMap<String, String>) {
+                    //获取用户信息
                     val uid = p2.get("uid")
                     val name = p2.get("name")
                     val gender = p2.get("gender")
@@ -48,6 +51,11 @@ class TestThereLoginActivity : BaseActivity() {
                 }
             })
 
+        }
+
+        //测试崩溃代码
+        test_carch.setOnClickListener {
+            tv!!.setText("rrrr")
         }
 
     }
