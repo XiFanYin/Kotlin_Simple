@@ -43,6 +43,13 @@
         <!--测试第三方登录页面-->
         <activity android:name=".module.me.view.TestThereLoginActivity" />
 
+        <!--友盟多渠道打包，包括初始化传递的appkey和channel的名称-->
+        <meta-data
+            android:name="UMENG_APPKEY"
+            android:value="5b61764ef43e483fda000131" />
+        <meta-data
+            android:name="UMENG_CHANNEL"
+            android:value="${UMENG_CHANNEL_VALUE}" />
 
     </application>
 

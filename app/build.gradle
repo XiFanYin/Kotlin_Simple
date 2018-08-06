@@ -22,7 +22,7 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-        signingConfig signingConfigs.config
+        flavorDimensions "default"
     }
     buildTypes {
         release {
@@ -34,7 +34,15 @@ android {
     kapt {
         generateStubs = true//将第三方库先生成class在用kotlin注解(glide)
     }
+    /*多渠道打包配置*/
     productFlavors {
+        xiaomi { manifestPlaceholders = [UMENG_CHANNEL_VALUE: "xiaomi"] }
+
+        qh360 { manifestPlaceholders = [UMENG_CHANNEL_VALUE: "qh360"] }
+
+        wandoujia { manifestPlaceholders = [UMENG_CHANNEL_VALUE: "wandoujia"] }
+
+        huawei { manifestPlaceholders = [UMENG_CHANNEL_VALUE: "huawei"] }
     }
 }
 
