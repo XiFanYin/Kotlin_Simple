@@ -28,6 +28,7 @@ open class BasePresenterImpl<V : BaseView>(mView: V) : BasePresenter {
 
 
     override fun unDisposable() {
+        //这里不仅切断了流，而且也取消了网络请求
         mCompositeDisposable?.dispose()
         mCompositeDisposable?.clear()
         mCompositeDisposable = null
