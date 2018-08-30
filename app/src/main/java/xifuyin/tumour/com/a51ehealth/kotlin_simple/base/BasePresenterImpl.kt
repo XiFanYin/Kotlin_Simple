@@ -39,10 +39,10 @@ open class BasePresenterImpl<V : BaseView>(mView: V) : BasePresenter {
     override fun <T> Loading(): ObservableTransformer<T, T> {
         return ObservableTransformer { upstream ->
             upstream
-                    .doOnSubscribe { mView?.showLoading() }
-                    .doOnError { mView?.showError() }
-                    .doOnComplete { mView?.dissmassErrorView() }
-                    .doFinally { mView?.dissmassLoading() }
+                    .doOnSubscribe { mView?.showLoading() }//只要去请求就去显示进度条
+                    .doOnError { mView?.showError() }//只要加载错误就显示错误布局
+                    .doOnComplete { mView?.dissmassErrorView() }//只要加载正确就显示正确布局
+                    .doFinally { mView?.dissmassLoading() }//不管加载是否成功，一定要取消加载框显示
         }
     }
 
