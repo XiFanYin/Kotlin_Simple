@@ -49,12 +49,12 @@ class HomeFragment : BaseMvpFragment<HomeContact.Persenter>(), HomeContact.View 
         //设置是垂直布局
         mRecyclerView.setHasFixedSize(true)
         mRecyclerView.layoutManager = LinearLayoutManager(activity)
-        adapter = HomeAdapter(R.layout.item_home_content_layout, null)
+        adapter = HomeAdapter(activity!!, null)
         //获得头部布局
         val top = layoutInflater.inflate(R.layout.item_home_top_layout, mRecyclerView.parent as ViewGroup, false)
         banner = top.findViewById<Banner>(R.id.banner)
         //添加头部轮播图控件
-        adapter.addHeaderView(top)
+        adapter.addHeadView(top)
         //设置adapter
         mRecyclerView.adapter = adapter
         var flag1 = true
@@ -87,22 +87,31 @@ class HomeFragment : BaseMvpFragment<HomeContact.Persenter>(), HomeContact.View 
             }
         })
 
-        //加载更多
-        adapter.setOnLoadMoreListener({
+
+        /*下来刷新时候*/
+        mSwipeRefreshLayout.setOnRefreshListener {
+            mPersenter.requestHomeData(1)
+        }
+        /*加载更多时候*/
+        mSwipeRefreshLayout.setOnLoadMoreListener {
             isShowLoading = false
             mPersenter.requestNextHomeData()
-        }, mRecyclerView)
+        }
+
+
 
         //设置条目点击事件
-        adapter.setOnItemClickListener({ _, _, position ->
+        adapter.setItemClickListener { view, position, data ->
             var intent = Intent(activity, VideoDetailActivity::class.java)
-            intent.putExtra("video_url", this.adapter.data.get(position).data.playUrl)
-            intent.putExtra("video_title", this.adapter.data.get(position).data.title)
-            intent.putExtra("image_url", this.adapter.data.get(position).data.cover.detail)
-            intent.putExtra("description", this.adapter.data.get(position).data.description)
+            intent.putExtra("video_url", data.data.playUrl)
+            intent.putExtra("video_title", data.data.title)
+            intent.putExtra("image_url", data.data.cover.detail)
+            intent.putExtra("description", data.data.description)
             startActivity(intent)
 
-        })
+        }
+
+
         //轮播图的点击事件
         banner.setOnBannerListener({ position ->
             var intent = Intent(activity, VideoDetailActivity::class.java)
@@ -134,6 +143,7 @@ class HomeFragment : BaseMvpFragment<HomeContact.Persenter>(), HomeContact.View 
 
     //得到数据后回调
     override fun getData(homeBean: HomeBean) {
+        mSwipeRefreshLayout.finishRefresh()
         //设置轮播图适配器
         banner.setImageLoader(GlideImageLoader())
         //截取一定数量的数据做为轮播图
@@ -157,8 +167,8 @@ class HomeFragment : BaseMvpFragment<HomeContact.Persenter>(), HomeContact.View 
 
     //得到下页数据回调
     override fun getNextData(homeBean: HomeBean) {
-        adapter.addData(homeBean.issueList[0].itemList)
-        adapter.loadMoreComplete()
+        adapter.concatData(homeBean.issueList[0].itemList)
+        mSwipeRefreshLayout.finishLoadMore()
     }
 
     //当显示错误布局后的点击事件回调

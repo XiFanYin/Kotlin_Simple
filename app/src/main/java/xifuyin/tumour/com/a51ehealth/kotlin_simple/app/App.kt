@@ -1,10 +1,14 @@
 package xifuyin.tumour.com.a51ehealth.kotlin_simple.app
 
 import android.app.Application
+import com.scwang.smartrefresh.layout.SmartRefreshLayout
+import com.scwang.smartrefresh.layout.footer.ClassicsFooter
+import com.scwang.smartrefresh.layout.header.ClassicsHeader
 import com.squareup.leakcanary.LeakCanary
 import com.umeng.analytics.MobclickAgent
 import com.umeng.commonsdk.UMConfigure
 import com.umeng.socialize.PlatformConfig
+import xifuyin.tumour.com.a51ehealth.kotlin_simple.R
 
 /**
  * Created by Administrator on 2018/5/21.
@@ -16,6 +20,17 @@ class App : Application() {
             private set
     }
 
+
+    init {
+        SmartRefreshLayout.setDefaultRefreshHeaderCreator{ context, layout->
+            layout.setPrimaryColorsId(R.color.colorPrimary, android.R.color.white)
+            ClassicsHeader(context)
+        }
+        SmartRefreshLayout.setDefaultRefreshFooterCreator{ context, layout->
+            ClassicsFooter(context).setDrawableSize(20F)
+
+        }
+    }
 
     override fun onCreate() {
         super.onCreate()

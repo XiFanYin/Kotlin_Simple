@@ -28,7 +28,6 @@ abstract class BaseActivity : AppCompatActivity() {
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         //设置布局
         setContentView(getLayout2())
-
         //初始化状态栏
         initBar()
         //初始化监听
