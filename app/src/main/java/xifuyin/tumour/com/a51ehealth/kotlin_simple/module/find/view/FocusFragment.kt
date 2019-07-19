@@ -1,6 +1,9 @@
 package xifuyin.tumour.com.a51ehealth.kotlin_simple.module.find.view
 
 import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
+import android.util.Log
+import com.google.gson.Gson
 import kotlinx.android.synthetic.main.fragment_focus_layout.*
 import kotlinx.android.synthetic.main.fragment_focus_layout.mRecyclerView
 import kotlinx.android.synthetic.main.fragment_focus_layout.mSwipeRefreshLayout

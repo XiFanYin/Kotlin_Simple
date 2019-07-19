@@ -81,4 +81,7 @@ dependencies {
     releaseImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.4'
     compile 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0-alpha-31'
     implementation project(':share')
+    implementation "android.arch.persistence.room:runtime:1.1.1"
+    annotationProcessor "android.arch.persistence.room:compiler:1.1.1"
 }
+

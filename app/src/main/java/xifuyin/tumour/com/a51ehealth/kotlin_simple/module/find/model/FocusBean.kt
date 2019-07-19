@@ -1,148 +1,83 @@
 package xifuyin.tumour.com.a51ehealth.kotlin_simple.module.find.model
 
+import android.arch.persistence.room.*
+import xifuyin.tumour.com.a51ehealth.kotlin_simple.utils.fromJson
+import xifuyin.tumour.com.a51ehealth.kotlin_simple.utils.toJson
 
-data class FocusBean(
-    val adExist: Boolean,
-    val count: Int,
-    val itemList: ArrayList<Item>,
-    val lastStartId: Int,
-    val nextPageUrl: String,
-    val refreshCount: Int,
-    val total: Int
-) {
-    data class Item(
-        val adIndex: Int,
-        val data: Data,
-        val id: Int,
-        val type: String
-    ) {
-        data class Data(
-            val count: Int,
-            val dataType: String,
-            val header: Header,
-            val itemList: ArrayList<Item>
-        ) {
-            data class Header(
-                val actionUrl: String,
-                val description: String,
-                val follow: Follow,
-                val icon: String,
-                val iconType: String,
-                val id: Int,
-                val ifPgc: Boolean,
-                val title: String
-            ) {
-                data class Follow(
-                    val followed: Boolean,
-                    val itemId: Int,
-                    val itemType: String
-                )
-            }
-            data class Item(
-                val adIndex: Int,
-                val data: Data,
-                val id: Int,
-                val type: String
-            ) {
-                data class Data(
-                    val author: Author,
-                    val category: String,
-                    val collected: Boolean,
-                    val consumption: Consumption,
-                    val cover: Cover,
-                    val dataType: String,
-                    val date: Long,
-                    val description: String,
-                    val descriptionEditor: String,
-                    val descriptionPgc: String,
-                    val duration: Int,
-                    val id: Int,
-                    val idx: Int,
-                    val ifLimitVideo: Boolean,
-                    val labelList: List<Any>,
-                    val library: String,
-                    val playInfo: List<PlayInfo>,
-                    val playUrl: String,
-                    val played: Boolean,
-                    val provider: Provider,
-                    val releaseTime: Long,
-                    val remark: String,
-                    val resourceType: String,
-                    val searchWeight: Int,
-                    val subtitles: List<Any>,
-                    val tags: List<Tag>,
-                    val title: String,
-                    val titlePgc: String,
-                    val type: String,
-                    val webUrl: WebUrl
-                ) {
-                    data class Consumption(
-                        val collectionCount: Int,
-                        val replyCount: Int,
-                        val shareCount: Int
-                    )
-                    data class Cover(
-                        val blurred: String,
-                        val detail: String,
-                        val feed: String
-                    )
-                    data class PlayInfo(
-                        val height: Int,
-                        val name: String,
-                        val type: String,
-                        val url: String,
-                        val urlList: List<Url>,
-                        val width: Int
-                    ) {
-                        data class Url(
-                            val name: String,
-                            val size: Long,
-                            val url: String
-                        )
-                    }
-                    data class Tag(
-                        val actionUrl: String,
-                        val bgPicture: String,
-                        val headerImage: String,
-                        val id: Int,
-                        val name: String,
-                        val tagRecType: String
-                    )
-                    data class Author(
-                        val approvedNotReadyVideoCount: Int,
-                        val description: String,
-                        val follow: Follow,
-                        val icon: String,
-                        val id: Int,
-                        val ifPgc: Boolean,
-                        val latestReleaseTime: Long,
-                        val link: String,
-                        val name: String,
-                        val shield: Shield,
-                        val videoNum: Int
-                    ) {
-                        data class Follow(
-                            val followed: Boolean,
-                            val itemId: Int,
-                            val itemType: String
-                        )
-                        data class Shield(
-                            val itemId: Int,
-                            val itemType: String,
-                            val shielded: Boolean
-                        )
-                    }
-                    data class WebUrl(
-                        val forWeibo: String,
-                        val raw: String
-                    )
-                    data class Provider(
-                        val alias: String,
-                        val icon: String,
-                        val name: String
-                    )
+/**
+ * 记得测试一下到底是list《自定义类型》还是其他的效果
+ */
+@Entity
+@TypeConverters(Converter::class)
+data class FocusBean(val itemList: ArrayList<Item>, @Ignore val nextPageUrl: String) {
+    data class Item(val data: Data) {
+        data class Data(val header: Header, val itemList: ArrayList<Item>) {
+            data class Header(val description: String, val icon: String, val title: String)
+            data class Item(val data: Data) {
+                data class Data(val cover: Cover, val description: String, val playUrl: String, val tags: List<Tag>, val title: String) {
+                    data class Cover(val detail: String)
+                    data class Tag(val name: String)
                 }
             }
         }
     }
+
+    @PrimaryKey
+    var currenturl: String = ""
+
+}
+
+
+class Converter {
+
+    // FocusBean.Item
+    @TypeConverter
+    fun storeItemToString(data: ArrayList<FocusBean.Item>): String = data.toJson()
+
+    @TypeConverter
+    fun storeStringToItem(value: String): ArrayList<FocusBean.Item> = value.fromJson()
+
+
+    // FocusBean.Item.Data
+    @TypeConverter
+    fun storeDataToString(data: FocusBean.Item.Data): String = data.toJson()
+
+    @TypeConverter
+    fun storeStringToData(value: String): FocusBean.Item.Data = value.fromJson()
+
+    //Header
+    @TypeConverter
+    fun storeHeaderToString(data: FocusBean.Item.Data.Header): String = data.toJson()
+
+    @TypeConverter
+    fun storeStringToHeader(value: String): FocusBean.Item.Data.Header = value.fromJson()
+
+    //item2
+    @TypeConverter
+    fun storeHeaderToItem2(data: ArrayList<FocusBean.Item.Data.Item>): String = data.toJson()
+
+    @TypeConverter
+    fun storeStringToitem2(value: String): ArrayList<FocusBean.Item.Data.Item> = value.fromJson()
+
+    //data
+    @TypeConverter
+    fun storeHeaderTodata2(data: FocusBean.Item.Data.Item.Data): String = data.toJson()
+
+    @TypeConverter
+    fun storeStringTodata2(value: String): FocusBean.Item.Data.Item.Data = value.fromJson()
+
+    //Cover
+    @TypeConverter
+    fun storeHeaderToCover(data: FocusBean.Item.Data.Item.Data.Cover): String = data.toJson()
+
+    @TypeConverter
+    fun storeStringToCover(value: String): FocusBean.Item.Data.Item.Data.Cover = value.fromJson()
+
+
+    //Tag
+    @TypeConverter
+    fun storeHeaderToTag(data: ArrayList<FocusBean.Item.Data.Item.Data.Tag>): String = data.toJson()
+
+    @TypeConverter
+    fun storeStringToTag(value: String): ArrayList<FocusBean.Item.Data.Item.Data.Tag> = value.fromJson()
 }
