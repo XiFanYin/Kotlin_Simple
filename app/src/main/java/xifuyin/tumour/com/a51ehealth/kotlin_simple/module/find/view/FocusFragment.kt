@@ -2,6 +2,9 @@ package xifuyin.tumour.com.a51ehealth.kotlin_simple.module.find.view
 
 import android.support.v7.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_focus_layout.*
+import kotlinx.android.synthetic.main.fragment_focus_layout.mRecyclerView
+import kotlinx.android.synthetic.main.fragment_focus_layout.mSwipeRefreshLayout
+import kotlinx.android.synthetic.main.fragment_home_layout.*
 import xifuyin.tumour.com.a51ehealth.kotlin_simple.R
 import xifuyin.tumour.com.a51ehealth.kotlin_simple.base.BaseMvpFragment
 import xifuyin.tumour.com.a51ehealth.kotlin_simple.module.find.model.FocusBean
@@ -37,16 +40,21 @@ class FocusFragment : BaseMvpFragment<FocusContact.Persenter>(), FocusContact.Vi
         //设置布局是垂直显示
         mRecyclerView.layoutManager = LinearLayoutManager(activity)
         //创建adapter
-        adapter = FocusAdapter(null, R.layout.item_focus_layout)
+        adapter = FocusAdapter(activity!!,null )
         //设置adapter
         mRecyclerView.adapter = adapter
+
+        /*下来刷新时候*/
+        mSwipeRefreshLayout.setOnRefreshListener {
+            mPersenter.getData()
+        }
         //加载更多
-        adapter.setOnLoadMoreListener({
+        mSwipeRefreshLayout.setOnLoadMoreListener {
             isShowLoading = false
             if (hasMore) {//如果有更多数据，就去加载更多数据
                 mPersenter.getMoreData()
             }
-        }, mRecyclerView)
+        }
     }
     //请求第一页数据
     override fun getSerivceData() {
@@ -54,14 +62,15 @@ class FocusFragment : BaseMvpFragment<FocusContact.Persenter>(), FocusContact.Vi
     }
 
     override fun setData(data: FocusBean, hasMore: Boolean) {
+        mSwipeRefreshLayout.finishRefresh()
         this.hasMore = hasMore//是否有更多数据
         adapter.setNewData(data.itemList)//设置请求到的数据
     }
 
     override fun setMoreData(data: FocusBean, hasMore: Boolean) {
         this.hasMore = hasMore
-        adapter.addData(data.itemList)//添加更多数据
-        if (hasMore) adapter.loadMoreComplete() else adapter.loadMoreEnd()//如果有更多就显示加载完成，如果没有更多，显示没有更多的UI
+        adapter.concatData(data.itemList)//添加更多数据
+        if (hasMore)mSwipeRefreshLayout.finishLoadMore()else mSwipeRefreshLayout.finishLoadMoreWithNoMoreData()//如果有更多就显示加载完成，如果没有更多，显示没有更多的UI
 
     }
 

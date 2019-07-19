@@ -4,7 +4,7 @@ package xifuyin.tumour.com.a51ehealth.kotlin_simple.module.find.model
 data class FocusBean(
     val adExist: Boolean,
     val count: Int,
-    val itemList: List<Item>,
+    val itemList: ArrayList<Item>,
     val lastStartId: Int,
     val nextPageUrl: String,
     val refreshCount: Int,
@@ -20,7 +20,7 @@ data class FocusBean(
             val count: Int,
             val dataType: String,
             val header: Header,
-            val itemList: List<Item>
+            val itemList: ArrayList<Item>
         ) {
             data class Header(
                 val actionUrl: String,

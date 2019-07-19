@@ -23,7 +23,7 @@ class App : Application() {
 
     init {
         SmartRefreshLayout.setDefaultRefreshHeaderCreator{ context, layout->
-            layout.setPrimaryColorsId(R.color.colorPrimary, android.R.color.white)
+            layout.setPrimaryColorsId(android.R.color.white, android.R.color.background_dark);
             ClassicsHeader(context)
         }
         SmartRefreshLayout.setDefaultRefreshFooterCreator{ context, layout->

@@ -6,6 +6,7 @@ import android.graphics.PorterDuff
 import android.support.design.widget.AppBarLayout
 import android.support.v4.content.ContextCompat
 import android.support.v7.widget.LinearLayoutManager
+import android.util.Log
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_classify_detial_layout.*
 import xifuyin.tumour.com.a51ehealth.kotlin_simple.R
@@ -40,6 +41,7 @@ class ClassifyDetailActivity : BaseMvpActivity<ClassifyDetailPersenter>(), Class
     override fun initListener() {
         //获取传递过来的数据
         data = intent.getSerializableExtra("data") as ClassifyBean
+        Log.e("rrrrrrrrrr",data.toString())
         //加载头部图片
         Glide.with(this).load(data.headerImage).into(imageView)
         //加载头部描述信息

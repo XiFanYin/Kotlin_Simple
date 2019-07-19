@@ -1,10 +1,12 @@
 package xifuyin.tumour.com.a51ehealth.kotlin_simple.module.find.view
 
 import android.content.Intent
+import android.support.v4.content.ContextCompat
 import android.support.v7.widget.GridLayoutManager
 import kotlinx.android.synthetic.main.fragment_classify_layout.*
 import xifuyin.tumour.com.a51ehealth.kotlin_simple.R
 import xifuyin.tumour.com.a51ehealth.kotlin_simple.base.BaseMvpFragment
+import xifuyin.tumour.com.a51ehealth.kotlin_simple.baseadapter.Divider
 import xifuyin.tumour.com.a51ehealth.kotlin_simple.module.find.model.ClassifyBean
 import xifuyin.tumour.com.a51ehealth.kotlin_simple.module.find.persenter.ClassifyPersenter
 import xifuyin.tumour.com.a51ehealth.kotlin_simple.module.find.persenter.contact.ClassifyContact
@@ -33,15 +35,22 @@ class ClassifyFragment : BaseMvpFragment<ClassifyContact.Persenter>(), ClassifyC
     override fun initListener() {
         mRecyclerView.setHasFixedSize(true)
         mRecyclerView.layoutManager = GridLayoutManager(activity, 2)
-        adapter = ClassifyAdapter(null, R.layout.item_classify_layout)
+        adapter = ClassifyAdapter(activity!!,null )
         mRecyclerView.adapter = adapter
-        //跳转到分类详情中去
-        adapter.setOnItemClickListener({ _, _, position ->
-            var intent = Intent(activity, ClassifyDetailActivity::class.java)
-            intent.putExtra("data", this.adapter.data.get(position))
-            startActivity(intent)
 
-        })
+        /*设置分割线*/
+        mRecyclerView.addItemDecoration(Divider.builder().color(android.R.color.white)
+                        .height(10)
+                        .width(10)
+                        .build())
+
+        //跳转到分类详情中去
+        adapter.setItemClickListener { view, position, data ->
+            var intent = Intent(activity, ClassifyDetailActivity::class.java)
+            intent.putExtra("data", data)
+            startActivity(intent)
+        }
+
     }
 
     override fun getSerivceData() {
@@ -50,7 +59,7 @@ class ClassifyFragment : BaseMvpFragment<ClassifyContact.Persenter>(), ClassifyC
 
 
     override fun getData(mData: ArrayList<ClassifyBean>) {
-        adapter.addData(mData)
+        adapter.setNewData(mData)
 
     }
 
