@@ -2,10 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Kotlin_Simple.iml" filepath="$PROJECT_DIR$/Kotlin_Simple.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/share/share.iml" filepath="$PROJECT_DIR$/share/share.iml" />
-      <module fileurl="file://$PROJECT_DIR$/xvideoview/xvideoview.iml" filepath="$PROJECT_DIR$/xvideoview/xvideoview.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Kotlin_Simple.iml" filepath="$PROJECT_DIR$/Kotlin_Simple.iml" group="Kotlin_Simple" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" group="Kotlin_Simple/app" />
+      <module fileurl="file://$PROJECT_DIR$/share/share.iml" filepath="$PROJECT_DIR$/share/share.iml" group="Kotlin_Simple/share" />
+      <module fileurl="file://$PROJECT_DIR$/xvideoview/xvideoview.iml" filepath="$PROJECT_DIR$/xvideoview/xvideoview.iml" group="Kotlin_Simple/xvideoview" />
     </modules>
   </component>
 </project>

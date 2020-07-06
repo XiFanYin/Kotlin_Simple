@@ -54,7 +54,7 @@
             android:layout_height="24dp"
             android:layout_marginLeft="15dp"
             android:src="@drawable/video_lite_wnd"
-            android:visibility="gone" />
+          />
 
         <ImageView
             android:id="@+id/menu"
